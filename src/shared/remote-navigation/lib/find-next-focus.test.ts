@@ -1,7 +1,15 @@
 import { describe, expect, it } from 'vitest';
+import type { FocusCandidate } from '../types';
 import { findNextFocus } from './find-next-focus';
 
-function item(id, group, left, top, width, height) {
+function item(
+  id: string,
+  group: string,
+  left: number,
+  top: number,
+  width: number,
+  height: number,
+): FocusCandidate {
   return { id, group, rect: { left, top, right: left + width, bottom: top + height } };
 }
 
@@ -49,8 +57,13 @@ const notice = item('notice', 'notice', 96, 644, 1728, 72);
 const layoutWithoutNotice = [...primaryTiles, ...compactTiles, ...headerButtons];
 const layoutWithNotice = [...layoutWithoutNotice, notice];
 
-function moveFrom(id, direction, layout) {
+function moveFrom(
+  id: string,
+  direction: Parameters<typeof findNextFocus>[0],
+  layout: readonly FocusCandidate[],
+): string | null {
   const from = layout.find((candidate) => candidate.id === id);
+  if (!from) throw new Error(`No item called ${id} in the layout`);
   const others = layout.filter((candidate) => candidate.id !== id);
   return findNextFocus(direction, from, others)?.id ?? null;
 }
@@ -82,9 +95,8 @@ describe('findNextFocus on the home layout', () => {
   });
 
   it('moves down from the notice onto a primary tile', () => {
-    expect(primaryTiles.map((tile) => tile.id)).toContain(
-      moveFrom('notice', 'down', layoutWithNotice),
-    );
+    const tileIds = primaryTiles.map((tile) => tile.id);
+    expect(tileIds).toContain(moveFrom('notice', 'down', layoutWithNotice));
   });
 
   it('moves up from a header button to the weather button', () => {

@@ -1,32 +1,40 @@
+import type { FocusCandidate, FocusDirection, Rect } from '../types';
+
 const EDGE_TOLERANCE = 1;
 
-const AXES = {
+type Axis = 'x' | 'y';
+
+const AXES: Record<FocusDirection, { main: Axis; isAhead: (from: Rect, to: Rect) => boolean }> = {
   left: { main: 'x', isAhead: (from, to) => to.right <= from.left + EDGE_TOLERANCE },
   right: { main: 'x', isAhead: (from, to) => to.left >= from.right - EDGE_TOLERANCE },
   up: { main: 'y', isAhead: (from, to) => to.bottom <= from.top + EDGE_TOLERANCE },
   down: { main: 'y', isAhead: (from, to) => to.top >= from.bottom - EDGE_TOLERANCE },
 };
 
-function mainGap(direction, from, to) {
+function mainGap(direction: FocusDirection, from: Rect, to: Rect): number {
   if (direction === 'left') return from.left - to.right;
   if (direction === 'right') return to.left - from.right;
   if (direction === 'up') return from.top - to.bottom;
   return to.top - from.bottom;
 }
 
-function crossOverlaps(main, from, to) {
+function crossOverlaps(main: Axis, from: Rect, to: Rect): boolean {
   return main === 'x'
     ? to.top < from.bottom && to.bottom > from.top
     : to.left < from.right && to.right > from.left;
 }
 
-function crossCentreDistance(main, from, to) {
+function crossCentreDistance(main: Axis, from: Rect, to: Rect): number {
   return main === 'x'
     ? Math.abs((to.top + to.bottom) / 2 - (from.top + from.bottom) / 2)
     : Math.abs((to.left + to.right) / 2 - (from.left + from.right) / 2);
 }
 
-export function findNextFocus(direction, from, candidates) {
+export function findNextFocus(
+  direction: FocusDirection,
+  from: FocusCandidate,
+  candidates: readonly FocusCandidate[],
+): FocusCandidate | null {
   const { main, isAhead } = AXES[direction];
 
   const ranked = candidates
