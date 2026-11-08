@@ -62,4 +62,8 @@ export const ar: Dictionary = {
     loading: 'نجهّز غرفتك',
     reset: 'نجهّز الغرفة للضيف التالي',
   },
+  placeholder: {
+    comingNext: 'هذه الصفحة قادمة قريباً.',
+    backHome: 'العودة إلى الرئيسية',
+  },
 };

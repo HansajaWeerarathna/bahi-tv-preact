@@ -60,4 +60,8 @@ export const en = {
     loading: 'Getting your room ready',
     reset: 'Preparing for the next guest',
   },
+  placeholder: {
+    comingNext: 'This page is coming next.',
+    backHome: 'Back to home',
+  },
 };
