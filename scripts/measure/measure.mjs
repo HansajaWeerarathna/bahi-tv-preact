@@ -4,10 +4,19 @@
 import { chromium } from 'playwright-core';
 
 const APP_URL = process.env.APP_URL ?? 'http://localhost:4173/?demo';
-// A planned arrow press must move focus within this many milliseconds, or the run fails.
+// Failure-detection ceiling, not a performance target: a planned arrow press that has not moved
+// focus after this long fails the run. The recorded slowest-5% focus move at 6x CPU slowdown was
+// 54 ms (docs/measurements.md), so 2,000 ms allows about 37 times that duration.
 const FOCUS_TIMEOUT_MS = 2000;
 const FOCUS_SAMPLES = 60;
-const FOCUS_KEYS = ['ArrowRight', 'ArrowRight', 'ArrowRight', 'ArrowLeft', 'ArrowLeft', 'ArrowLeft'];
+const FOCUS_KEYS = [
+  'ArrowRight',
+  'ArrowRight',
+  'ArrowRight',
+  'ArrowLeft',
+  'ArrowLeft',
+  'ArrowLeft',
+];
 const RANDOM_KEYS = [
   'ArrowUp',
   'ArrowDown',
