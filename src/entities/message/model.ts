@@ -34,3 +34,7 @@ export function markAsRead(id: string) {
     message.id === id ? { ...message, isUnread: false } : message,
   );
 }
+
+export function addMessage(message: Message): void {
+  messages.value = [message, ...messages.value];
+}

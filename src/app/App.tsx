@@ -11,6 +11,14 @@ import { FrontDeskPage } from '@/pages/front-desk';
 import { MessagesPage } from '@/pages/messages';
 import { CheckOutPage } from '@/pages/check-out';
 import { TvPage } from '@/pages/tv';
+import {
+  MenuItemPage,
+  OrderDonePage,
+  OrderReviewPage,
+  RequestDonePage,
+  RequestPage,
+  RoomServicePage,
+} from '@/pages/room-service';
 import { DemoKeys, isDemoMode } from '@/features/demo-tools';
 import { TvCanvas } from './TvCanvas';
 import { useDocumentPreferences } from './useDocumentPreferences';
@@ -30,6 +38,12 @@ export function App() {
           <Route path={ROUTES.messages} component={MessagesPage} />
           <Route path={ROUTES.checkOut} component={CheckOutPage} />
           <Route path={ROUTES.tv} component={TvPage} />
+          <Route path={ROUTES.roomService} component={RoomServicePage} />
+          <Route path={ROUTES.roomServiceItem} component={MenuItemPage} />
+          <Route path={ROUTES.roomServiceRequest} component={RequestPage} />
+          <Route path={ROUTES.roomServiceOrder} component={OrderReviewPage} />
+          <Route path={ROUTES.roomServiceOrderDone} component={OrderDonePage} />
+          <Route path={ROUTES.roomServiceRequestDone} component={RequestDonePage} />
           <Route default component={PlaceholderPage} />
         </Router>
         <Toast />
