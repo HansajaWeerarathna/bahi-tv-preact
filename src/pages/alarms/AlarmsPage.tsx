@@ -6,6 +6,7 @@ import {
   formatAlarmTime,
   repeatLabel,
   setAlarmOn,
+  startEditAlarm,
   startNewAlarm,
   type Alarm,
   type RepeatLabels,
@@ -44,10 +45,19 @@ type AlarmRowProps = {
 };
 
 function AlarmRow({ alarm }: AlarmRowProps) {
+  const { route } = useLocation();
   const toggle = useFocusable({
     id: `alarm-toggle-${alarm.id}`,
     group: GROUP,
     onSelect: () => setAlarmOn(alarm.id, !alarm.on),
+  });
+  const edit = useFocusable({
+    id: `alarm-edit-${alarm.id}`,
+    group: GROUP,
+    onSelect: () => {
+      startEditAlarm(alarm);
+      route(ROUTES.alarmEdit.replace(':alarmId', String(alarm.id)));
+    },
   });
   const remove = useFocusable({
     id: `alarm-delete-${alarm.id}`,
@@ -60,7 +70,12 @@ function AlarmRow({ alarm }: AlarmRowProps) {
 
   return (
     <div class="flex items-center gap-3.5">
-      <div class="flex items-center justify-between gap-3 rounded-md border-2 border-transparent px-4 py-3 text-left">
+      <button
+        type="button"
+        {...edit.focusProps}
+        aria-label={t('alarmsPage.edit')}
+        class={`flex items-center justify-between gap-3 rounded-md border-2 px-4 py-3 text-left ${FOCUS_RING}`}
+      >
         <div class="flex flex-col gap-1">
           <span class="text-heading leading-none font-semibold">
             {formatAlarmTime(alarm.hour, alarm.minute, t('alarmsPage.am'), t('alarmsPage.pm'))}
@@ -69,7 +84,7 @@ function AlarmRow({ alarm }: AlarmRowProps) {
             {repeatLabel(alarm.days, repeatLabels())}
           </span>
         </div>
-      </div>
+      </button>
       <button
         type="button"
         {...toggle.focusProps}

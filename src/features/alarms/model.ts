@@ -28,6 +28,16 @@ export function startNewAlarm(): void {
   alarmDraft.value = newDraft();
 }
 
+// Opens an existing alarm in the edit form.
+export function startEditAlarm(alarm: Alarm): void {
+  alarmDraft.value = {
+    id: alarm.id,
+    hour: alarm.hour,
+    minute: alarm.minute,
+    days: [...alarm.days],
+  };
+}
+
 export function adjustAlarmDraft(field: DraftField, step: number): void {
   alarmDraft.value = adjustDraft(alarmDraft.value, field, step);
 }

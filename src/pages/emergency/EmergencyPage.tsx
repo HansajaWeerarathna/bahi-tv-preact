@@ -1,9 +1,9 @@
-import { useState } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 import { guest } from '@/entities/guest';
 import { HOTEL } from '@/shared/config';
 import { t } from '@/shared/i18n';
 import type { TranslationKey } from '@/shared/i18n';
-import { useFocusable, useInitialFocus } from '@/shared/remote-navigation';
+import { setFocus, useFocusable, useInitialFocus } from '@/shared/remote-navigation';
 import { ActionButton, FeedbackBanner, PageLayout } from '@/shared/ui';
 
 type NumberRowProps = {
@@ -21,13 +21,32 @@ function NumberRow({ labelKey, value }: NumberRowProps) {
 }
 
 export function EmergencyPage() {
+  const [isConfirming, setIsConfirming] = useState(false);
   const [isAlertSent, setIsAlertSent] = useState(false);
   const roomNumber = guest.value.roomNumber;
   const sendStaff = useFocusable({
     id: 'emergency-send',
     group: 'page-actions',
-    onSelect: () => setIsAlertSent(true),
+    // One OK only asks. The alert is sent after a second, deliberate choice.
+    onSelect: () => setIsConfirming(true),
   });
+  const confirm = useFocusable({
+    id: 'emergency-confirm',
+    group: 'page-actions',
+    onSelect: () => {
+      setIsConfirming(false);
+      setIsAlertSent(true);
+    },
+  });
+  const notYet = useFocusable({
+    id: 'emergency-not-yet',
+    group: 'page-actions',
+    onSelect: () => setIsConfirming(false),
+  });
+  // Safe default: the focus starts on "No, go back" when the question appears.
+  useEffect(() => {
+    setFocus(isConfirming ? 'emergency-not-yet' : 'emergency-send');
+  }, [isConfirming]);
   const cancel = useFocusable({
     id: 'emergency-cancel',
     group: 'page-actions',
@@ -59,19 +78,39 @@ export function EmergencyPage() {
             </FeedbackBanner>
           </div>
         )}
-        <div class="mt-8 flex gap-6">
-          <ActionButton
-            focusProps={sendStaff.focusProps}
-            labelKey="emergency.sendStaff"
-            labelValues={{ number: roomNumber }}
-            variant="danger"
-          />
-          <ActionButton
-            focusProps={cancel.focusProps}
-            labelKey="emergency.cancel"
-            variant="outline"
-          />
-        </div>
+        {isConfirming ? (
+          <div class="mt-8 flex flex-col gap-6">
+            <p class="text-title leading-[normal] font-medium">
+              {t('emergency.confirmQuestion', { number: roomNumber })}
+            </p>
+            <div class="flex gap-6">
+              <ActionButton
+                focusProps={notYet.focusProps}
+                labelKey="emergency.confirmNo"
+                variant="outline"
+              />
+              <ActionButton
+                focusProps={confirm.focusProps}
+                labelKey="emergency.confirmYes"
+                variant="danger"
+              />
+            </div>
+          </div>
+        ) : (
+          <div class="mt-8 flex gap-6">
+            <ActionButton
+              focusProps={sendStaff.focusProps}
+              labelKey="emergency.sendStaff"
+              labelValues={{ number: roomNumber }}
+              variant="danger"
+            />
+            <ActionButton
+              focusProps={cancel.focusProps}
+              labelKey="emergency.cancel"
+              variant="outline"
+            />
+          </div>
+        )}
       </div>
     </PageLayout>
   );

@@ -1,5 +1,6 @@
 export const enB = {
   alarmsPage: {
+    edit: 'Edit alarm',
     title: 'Alarms',
     empty: 'No alarms yet. Add one below.',
     add: '+ Add alarm',
@@ -168,6 +169,9 @@ export const enB = {
     uae: 'UAE emergency services',
     uaeValue: 'Police 999, ambulance 998, fire 997',
     sendStaff: 'Send staff to Room {number}',
+    confirmQuestion: 'Send an alert to hotel staff for Room {number}?',
+    confirmYes: 'Yes, send alert',
+    confirmNo: 'No, go back',
     alertSent: 'Alert sent. Security and medical staff are on their way to Room {number}.',
     cancel: 'Cancel',
   },

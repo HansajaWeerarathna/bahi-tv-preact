@@ -1,3 +1,4 @@
+import { useEffect } from 'preact/hooks';
 import clsx from 'clsx';
 import type { ComponentChildren } from 'preact';
 import { useLocation } from 'preact-iso';
@@ -106,9 +107,19 @@ function FormFrame({ children }: FormFrameProps) {
   return <div class="mt-8 flex flex-col gap-6">{children}</div>;
 }
 
-export function AlarmEditPage() {
+type AlarmEditPageProps = {
+  alarmId?: string;
+};
+
+export function AlarmEditPage({ alarmId }: AlarmEditPageProps) {
   const draft = alarmDraft.value;
   const { route } = useLocation();
+  // A typed or old address for an alarm that is not being edited goes back to the list,
+  // so Save cannot quietly create a different alarm.
+  const isEditingThis = alarmId === 'new' ? draft.id === null : draft.id === Number(alarmId);
+  useEffect(() => {
+    if (!isEditingThis) route(ROUTES.alarms, true);
+  }, [isEditingThis, route]);
   const hour12 = draft.hour % 12 === 0 ? 12 : draft.hour % 12;
   const periodLabel = draft.hour < 12 ? t('alarmsPage.am') : t('alarmsPage.pm');
 
