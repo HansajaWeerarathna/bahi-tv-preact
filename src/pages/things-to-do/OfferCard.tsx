@@ -35,7 +35,7 @@ export function OfferCard({ offer }: OfferCardProps) {
       </span>
       <span class="flex min-w-0 flex-1 flex-col">
         <span class="text-body leading-[33px] font-semibold">{pickText(offer.title)}</span>
-        <span class="mt-1 text-caption leading-[normal] whitespace-nowrap text-cream-muted">
+        <span class="mt-1 text-caption leading-[normal] text-cream-muted">
           {`${pickText(offer.timing)}${separator} ${pickText(offer.location)}`}
         </span>
         <span class="mt-1.5 text-caption leading-[normal] font-semibold">

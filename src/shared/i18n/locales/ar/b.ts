@@ -2,6 +2,7 @@ import type { Dictionary } from '../../types';
 
 export const arB = {
   alarmsPage: {
+    edit: 'تعديل المنبّه',
     title: 'المنبّه',
     empty: 'لا توجد منبهات بعد. أضف منبهاً من الأسفل.',
     add: '+ إضافة منبه',
@@ -169,6 +170,9 @@ export const arB = {
     uae: 'خدمات الطوارئ في الإمارات',
     uaeValue: 'الشرطة 999، الإسعاف 998، الإطفاء 997',
     sendStaff: 'أرسل موظفاً إلى الغرفة {number}',
+    confirmQuestion: 'هل ترسل تنبيهاً إلى موظفي الفندق للغرفة {number}؟',
+    confirmYes: 'نعم، أرسل التنبيه',
+    confirmNo: 'لا، رجوع',
     alertSent: 'تم إرسال التنبيه. يتجه فريق الأمن والإسعاف إلى الغرفة {number}.',
     cancel: 'إلغاء',
   },
@@ -181,8 +185,8 @@ export const arB = {
     loading: 'نجهّز غرفتك',
     reset: 'نجهّز الغرفة للضيف التالي',
   },
-  placeholder: {
-    comingNext: 'هذه الصفحة قادمة قريباً.',
+  notFound: {
+    message: 'لم نجد ذلك. ربما تم نقله.',
     backHome: 'العودة إلى الرئيسية',
   },
 } satisfies Partial<Dictionary>;

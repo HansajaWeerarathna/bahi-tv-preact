@@ -4,9 +4,8 @@ import { startClock } from '@/entities/clock';
 import { systemState } from '@/entities/session';
 import { ROUTES } from '@/shared/config';
 import { RemoteControl } from '@/shared/remote-navigation';
-import { Toast } from '@/shared/ui';
+import { NotFoundView, Toast } from '@/shared/ui';
 import { HomePage } from '@/pages/home';
-import { PlaceholderPage } from '@/pages/placeholder';
 import { startAlarmRing } from '@/features/alarms';
 import { DemoKeys, isDemoMode } from '@/features/demo-tools';
 import { VolumeKeys } from '@/features/volume';
@@ -72,14 +71,15 @@ export function App() {
             <Route path={ROUTES.alarmEdit} component={AlarmEditPage} />
             <Route path={ROUTES.roomService} component={RoomServicePage} />
             <Route path={ROUTES.roomServiceItem} component={MenuItemPage} />
+            {/* Literal routes must come before ":requestId", or "done" is read as a request id. */}
+            <Route path={ROUTES.roomServiceRequestDone} component={RequestDonePage} />
             <Route path={ROUTES.roomServiceRequest} component={RequestPage} />
             <Route path={ROUTES.roomServiceOrder} component={OrderReviewPage} />
             <Route path={ROUTES.roomServiceOrderDone} component={OrderDonePage} />
-            <Route path={ROUTES.roomServiceRequestDone} component={RequestDonePage} />
             <Route path={ROUTES.settings} component={SettingsPage} />
             <Route path={ROUTES.remoteHelp} component={RemoteHelpPage} />
             <Route path={ROUTES.search} component={SearchPage} />
-            <Route default component={PlaceholderPage} />
+            <Route default component={NotFoundView} />
           </Router>
         ) : (
           <SystemScreen state={system} />

@@ -1,3 +1,4 @@
+import { useEffect } from 'preact/hooks';
 import clsx from 'clsx';
 import type { ComponentChildren } from 'preact';
 import { useLocation } from 'preact-iso';
@@ -13,6 +14,7 @@ import { ROUTES } from '@/shared/config';
 import { t, type TranslationKey } from '@/shared/i18n';
 import {
   focusedId,
+  setFocus,
   useFocusable,
   useInitialFocus,
   useRemoteKeyHandler,
@@ -20,10 +22,22 @@ import {
 import { ActionButton, PageLayout } from '@/shared/ui';
 
 const GROUP = 'alarm-edit';
+const HOUR_ID = 'alarm-hour';
+const MINUTE_ID = 'alarm-minute';
+const PERIOD_ID = 'alarm-period';
+const FIRST_DAY_ID = 'alarm-day-0';
 const FIELD_BY_ID: Record<string, DraftField> = {
-  'alarm-hour': 'hour',
-  'alarm-minute': 'minute',
-  'alarm-period': 'period',
+  [HOUR_ID]: 'hour',
+  [MINUTE_ID]: 'minute',
+  [PERIOD_ID]: 'period',
+};
+const NEXT_FIELD: Record<string, string> = {
+  [HOUR_ID]: MINUTE_ID,
+  [MINUTE_ID]: PERIOD_ID,
+};
+const PREVIOUS_FIELD: Record<string, string> = {
+  [MINUTE_ID]: HOUR_ID,
+  [PERIOD_ID]: MINUTE_ID,
 };
 const DAY_KEYS: TranslationKey[] = [
   'alarmsPage.day.sun',
@@ -93,20 +107,43 @@ function FormFrame({ children }: FormFrameProps) {
   return <div class="mt-8 flex flex-col gap-6">{children}</div>;
 }
 
-export function AlarmEditPage() {
+type AlarmEditPageProps = {
+  alarmId?: string;
+};
+
+export function AlarmEditPage({ alarmId }: AlarmEditPageProps) {
   const draft = alarmDraft.value;
   const { route } = useLocation();
+  // A typed or old address for an alarm that is not being edited goes back to the list,
+  // so Save cannot quietly create a different alarm.
+  const isEditingThis = alarmId === 'new' ? draft.id === null : draft.id === Number(alarmId);
+  useEffect(() => {
+    if (!isEditingThis) route(ROUTES.alarms, true);
+  }, [isEditingThis, route]);
   const hour12 = draft.hour % 12 === 0 ? 12 : draft.hour % 12;
   const periodLabel = draft.hour < 12 ? t('alarmsPage.am') : t('alarmsPage.pm');
 
   useInitialFocus('alarm-hour');
   useRemoteKeyHandler((action) => {
-    const field = FIELD_BY_ID[focusedId.value ?? ''];
-    if (!field) return false;
-    if (action === 'up') adjustAlarmDraft(field, -1);
-    else if (action === 'down') adjustAlarmDraft(field, 1);
-    else return false;
-    return true;
+    const current = focusedId.value ?? '';
+    const field = FIELD_BY_ID[current];
+    // Like the original: Up and Down change a time field, Left and Right move between fields.
+    if (field) {
+      if (action === 'up') adjustAlarmDraft(field, -1);
+      else if (action === 'down') adjustAlarmDraft(field, 1);
+      else if (action === 'right') setFocus(NEXT_FIELD[current] ?? FIRST_DAY_ID);
+      else if (action === 'left') {
+        const previous = PREVIOUS_FIELD[current];
+        if (previous) setFocus(previous);
+      } else return false;
+      return true;
+    }
+    // From the first weekday, Left goes back to AM/PM, so the days can be left again.
+    if (current === FIRST_DAY_ID && action === 'left') {
+      setFocus(PERIOD_ID);
+      return true;
+    }
+    return false;
   });
 
   const save = useFocusable({

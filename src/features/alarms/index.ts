@@ -6,6 +6,7 @@ export {
   saveAlarmDraft,
   setAlarmOn,
   startAlarmRing,
+  startEditAlarm,
   startNewAlarm,
   toggleAlarmDay,
 } from './model';

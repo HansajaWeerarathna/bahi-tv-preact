@@ -24,7 +24,7 @@ import {
 import { ActionButton, PageLayout } from '@/shared/ui';
 import { buildOrderMessage } from './messages';
 import { formatPrice } from './rows';
-import { serviceTab } from './state';
+import { serviceFocusId, serviceTab } from './state';
 
 const DELIVERY_LABELS = [
   'roomService.deliveryNow',
@@ -48,10 +48,13 @@ export function OrderReviewPage() {
     id: 'review-place',
     group: 'page-actions',
     onSelect: () => {
+      // An empty cart (for example after Back from the done screen) cannot be placed.
+      if (orderLines.value.length === 0) return;
       const time = formatClockTime(hotelTime.value, { language: 'en', use12Hour: use12Hour.value });
       const placed = placeOrder();
       addMessage(buildOrderMessage(placed, room, time));
-      route(ROUTES.roomServiceOrderDone);
+      // Replace the review in history, so Back from the done screen never returns to it.
+      route(ROUTES.roomServiceOrderDone, true);
     },
   });
   const clear = useFocusable({
@@ -60,6 +63,7 @@ export function OrderReviewPage() {
     onSelect: () => {
       clearOrder();
       serviceTab.value = 0;
+      serviceFocusId.value = 'rs-row-0';
       route(ROUTES.roomService);
     },
   });

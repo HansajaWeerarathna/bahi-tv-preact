@@ -11,7 +11,7 @@ export function ThingsToDoPage() {
   return (
     <PageLayout title={t('thingsToDoPage.title')}>
       <p class="mt-8 text-body leading-[1.48] text-cream-muted">{t('thingsToDoPage.subtitle')}</p>
-      <div class="mt-10 grid grid-cols-[748px_1fr] gap-x-12">
+      <div class="mt-10 grid grid-cols-[748px_minmax(0,1fr)] gap-x-12">
         {OFFERS.map((offer) => (
           <OfferCard key={offer.id} offer={offer} />
         ))}

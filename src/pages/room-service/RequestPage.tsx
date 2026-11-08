@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useRef, useState } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 import { hotelTime } from '@/entities/clock';
 import { guest } from '@/entities/guest';
@@ -18,7 +18,7 @@ import {
   useInitialFocus,
   useRemoteKeyHandler,
 } from '@/shared/remote-navigation';
-import { ActionButton, PageLayout, QuantityControl } from '@/shared/ui';
+import { ActionButton, NotFoundView, PageLayout, QuantityControl } from '@/shared/ui';
 import { buildRequestMessage } from './messages';
 
 const QTY_ID = 'request-qty';
@@ -30,6 +30,7 @@ type RequestViewProps = {
 function RequestView({ request }: RequestViewProps) {
   const { route } = useLocation();
   const [qty, setQty] = useState(1);
+  const sending = useRef(false);
   const isCountable = request.maxQty > 1;
   const alreadyAt = sentAt.value[request.id];
   const room = guest.value.roomNumber;
@@ -39,10 +40,13 @@ function RequestView({ request }: RequestViewProps) {
     id: 'request-send',
     group: 'page-actions',
     onSelect: () => {
+      if (sending.current) return;
+      sending.current = true;
       const time = formatClockTime(hotelTime.value, { language: 'en', use12Hour: use12Hour.value });
       const sent = sendRequest(request, qty, time);
       addMessage(buildRequestMessage(sent, room, time));
-      route(ROUTES.roomServiceRequestDone);
+      // Replace this form in history, so Back from the done screen cannot resend it.
+      route(ROUTES.roomServiceRequestDone, true);
     },
   });
   const cancel = useFocusable({
@@ -107,6 +111,6 @@ type RequestPageProps = {
 
 export function RequestPage({ requestId }: RequestPageProps) {
   const request = GUEST_REQUESTS.find((entry) => entry.id === requestId);
-  if (!request) return <PageLayout title={t('roomService.title')}>{null}</PageLayout>;
+  if (!request) return <NotFoundView />;
   return <RequestView request={request} />;
 }
