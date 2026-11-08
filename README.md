@@ -304,11 +304,3 @@ To change the brand colour, edit `--color-gold` in `src/app/styles/theme.css`. T
 | ![High contrast](docs/screenshots/states/high-contrast.jpg) High contrast                   | ![Larger text](docs/screenshots/states/larger-text.jpg) Larger text          |
 
 </details>
-
-## Credits
-
-- **Fonts:** Alexandria and Noto Naskh Arabic, SIL Open Font License. Licence files are in `public/fonts/`.
-- **Icons:** outline icons from an older Lucide release, ISC licence. They are copied into the project as path data.
-- **Offer photos:** afternoon tea, daily activities and sunset boat trip are under the Unsplash License.
-- **Heritage tour photo:** "Photo: Ajman Fort by Ahmed Fouad, CC BY-SA 3.0, via Wikimedia Commons".
-- The hotel name and logo belong to Bahi Ajman Palace Hotel.
