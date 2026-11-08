@@ -216,7 +216,7 @@ To change the brand colour, edit `--color-gold` in `src/app/styles/theme.css`. T
 
 ## More flows
 
-<details>
+<details open>
 <summary><strong>Request housekeeping</strong></summary>
 
 ![Sending a guest request](docs/screenshots/flows/guest-request.gif)
