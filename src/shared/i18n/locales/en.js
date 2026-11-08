@@ -1,0 +1,63 @@
+export const en = {
+  hotel: {
+    name: 'Bahi Ajman Palace Hotel',
+    footerName: 'Bahi Ajman Palace Hotel & Residences',
+  },
+  header: {
+    room: 'Room {number}',
+    weatherUnavailable: 'Weather unavailable',
+    frontDesk: 'Contact the front desk',
+    settings: 'Settings',
+    search: 'Search',
+  },
+  greeting: {
+    morning: 'Good morning',
+    afternoon: 'Good afternoon',
+    evening: 'Good evening',
+    night: 'Good night',
+    line: '{salutation}, {name}',
+    welcomeRoom: 'Welcome to Room {number}',
+    subline: 'We wish you a pleasant stay',
+    occasion: {
+      anniversary: 'Happy anniversary',
+      birthday: 'Happy birthday',
+    },
+  },
+  guestTitle: {
+    mr: 'Mr.',
+    ms: 'Ms.',
+    dr: 'Dr.',
+  },
+  notice: {
+    oneMessage: '1 new message from {sender}',
+    manyMessages: '{count} new messages waiting for you',
+    checkOutToday: 'Check-out is today at {time}. Late check-out is available.',
+    lateCheckOutConfirmed: 'Late check-out confirmed until {time} today.',
+    action: 'OK',
+  },
+  tiles: {
+    frontDesk: 'Front desk',
+    frontDeskHint: 'Ext. {extension}',
+    tv: 'TV',
+    tvHint: 'Channels and apps',
+    roomService: 'Room service',
+    roomServiceHint: 'Food and requests',
+    thingsToDo: 'Things to do',
+    thingsToDoHint: '{count} offers',
+    messages: 'Messages',
+    wifi: 'Wi-Fi',
+    cast: 'Cast',
+    alarm: 'Alarm',
+    stay: 'Your stay',
+    roomControls: 'Room controls',
+  },
+  hints: {
+    navigate: 'Navigate',
+    select: 'OK Select',
+    back: 'Back',
+  },
+  system: {
+    loading: 'Getting your room ready',
+    reset: 'Preparing for the next guest',
+  },
+};
