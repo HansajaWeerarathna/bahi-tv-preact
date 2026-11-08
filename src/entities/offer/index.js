@@ -1,1 +1,0 @@
-export { offers } from './model';
