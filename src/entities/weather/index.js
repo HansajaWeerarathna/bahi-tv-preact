@@ -1,1 +1,0 @@
-export { weather } from './model';
