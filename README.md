@@ -12,8 +12,8 @@ An in-room TV app for Bahi Ajman Palace Hotel. A guest uses the TV remote to cal
 
 |                                   |                                                    |
 | --------------------------------- | -------------------------------------------------- |
-| JavaScript at start-up            | 35.32 KB gzipped                                   |
-| CSS at start-up                   | 7.10 KB gzipped                                    |
+| JavaScript at start-up            | 35.35 KB gzipped                                   |
+| CSS at start-up                   | 7.12 KB gzipped                                    |
 | Focus move with the CPU slowed 6× | 44 ms median                                       |
 | Random remote key presses         | 2600 presses, 0 errors                             |
 | Unit tests                        | 75 passing                                         |
@@ -169,7 +169,7 @@ A hotel TV has a slow processor and little memory, so performance shaped the bui
 
 - **Preact and Signals.** The same component model as React with a much smaller runtime. Signals update only what reads a value: each minute the clock changes its own text directly, and only the greeting and notice re-render.
 - **Only the home screen loads at start-up.** Every other page loads when it's first opened, and the QR library only when a code is shown.
-- **The focus ring is never animated.** Moving focus only transitions transform and colours, because animating `box-shadow` is expensive on a TV.
+- **Tiles don't animate their focus ring.** Moving focus only transitions transform and colours, because animating `box-shadow` is expensive on a TV.
 - **Held arrow keys are limited** to one move every 120 ms, so focus never falls behind the remote.
 - **Every timer and listener is cleaned up** when its screen closes, because a TV app can run for days.
 
