@@ -1,0 +1,1 @@
+export { HomeBackground } from './HomeBackground';
