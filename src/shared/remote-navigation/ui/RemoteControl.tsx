@@ -21,14 +21,11 @@ const KEY_ACTIONS: Readonly<Record<string, RemoteAction>> = {
   M: 'menu',
 };
 
-const DIRECTIONS: ReadonlySet<RemoteAction> = new Set<FocusDirection>([
-  'up',
-  'down',
-  'left',
-  'right',
-]);
-
 const ARROW_REPEAT_MS = 120;
+
+function isFocusDirection(action: RemoteAction): action is FocusDirection {
+  return action === 'up' || action === 'down' || action === 'left' || action === 'right';
+}
 
 export function RemoteControl() {
   const { path, route } = useLocation();
@@ -41,14 +38,14 @@ export function RemoteControl() {
       if (!action) return;
       event.preventDefault();
 
-      if (DIRECTIONS.has(action)) {
+      if (isFocusDirection(action)) {
         const now = performance.now();
         if (event.repeat && now - lastArrowAt < ARROW_REPEAT_MS) return;
         lastArrowAt = now;
       }
 
       if (runKeyHandlers(action, event)) return;
-      if (DIRECTIONS.has(action)) moveFocus(action as FocusDirection);
+      if (isFocusDirection(action)) moveFocus(action);
       else if (action === 'select') selectFocused();
       else if (action === 'back' && path !== ROUTES.home) history.back();
       else if (action === 'home') route(ROUTES.home);
