@@ -66,7 +66,7 @@ function SpotlightContent() {
             <span class="flex h-[60px] origin-[left_center] items-center rounded-full border-2 border-cream/70 bg-canvas/35 px-9 text-label font-semibold transition group-data-[focused]:scale-[1.06] group-data-[focused]:border-gold group-data-[focused]:bg-gold group-data-[focused]:text-gold-ink rtl:origin-[right_center]">
               {t('offer.seeDetails')}
             </span>
-            <span class="text-body font-semibold">{pickText(offer.price)}</span>
+            <span class="text-body leading-[normal] font-semibold">{pickText(offer.price)}</span>
             <OfferProgress />
           </span>
         </span>

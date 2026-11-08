@@ -11,8 +11,8 @@ export function RemoteHints({ class: className, endText }: RemoteHintsProps) {
   return (
     <div aria-hidden="true" class={clsx('flex items-center justify-between', className)}>
       <div class="flex items-center gap-9 text-caption font-medium text-cream-subtle">
-        <span class="flex items-center gap-2">
-          <span class="flex items-center gap-1">
+        <span class="flex items-center gap-2.5">
+          <span class="flex items-center gap-1 ps-1">
             <HintArrowIcon direction="up" />
             <HintArrowIcon direction="down" />
             <HintArrowIcon direction="left" />

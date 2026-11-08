@@ -10,7 +10,7 @@ export function GreetingBand() {
     <div class="mt-16 mb-1 flex items-start justify-between gap-12">
       <div class="min-w-0 flex-1">
         <GreetingHeadline options={options} />
-        <p class="text-body">{getGreetingSubline(guest.value)}</p>
+        <p class="mt-[7px] text-body leading-[normal]">{getGreetingSubline(guest.value)}</p>
       </div>
       <HeaderButtons />
     </div>
