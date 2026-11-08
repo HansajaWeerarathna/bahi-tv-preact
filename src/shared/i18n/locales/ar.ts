@@ -57,6 +57,20 @@ export const ar: Dictionary = {
   offer: {
     seeDetails: 'عرض التفاصيل',
   },
+  tv: {
+    guide: 'الدليل',
+    guideFrom: 'الآن، من {start} إلى {end}',
+    watching: 'تشاهده الآن',
+    next: 'التالي',
+    to: 'إلى',
+    subtitles: 'الترجمة مفعّلة',
+    placeholder: 'تظهر هنا الصورة المباشرة من نظام تلفاز الفندق',
+    appOpens: 'يُفتح {name} هنا. {now}.',
+    keyChannel: 'أعلى أو أسفل: تغيير القناة',
+    keyGuide: 'موافق: الدليل',
+    keyHome: 'رجوع: الرئيسية',
+    noChannel: 'لا توجد قناة {number}',
+  },
   messages: {
     title: 'الرسائل',
     empty: 'ليس لديك رسائل الآن.',

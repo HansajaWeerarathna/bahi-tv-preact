@@ -55,6 +55,20 @@ export const en = {
   offer: {
     seeDetails: 'See details',
   },
+  tv: {
+    guide: 'Guide',
+    guideFrom: 'Now, {start} to {end}',
+    watching: 'Watching',
+    next: 'Next',
+    to: 'to',
+    subtitles: 'Subtitles on',
+    placeholder: 'Live picture from the hotel TV system appears here',
+    appOpens: '{name} opens here. {now}.',
+    keyChannel: 'Up or Down: change channel',
+    keyGuide: 'OK: guide',
+    keyHome: 'Back: home',
+    noChannel: 'There is no channel {number}',
+  },
   messages: {
     title: 'Messages',
     empty: 'You have no messages right now.',

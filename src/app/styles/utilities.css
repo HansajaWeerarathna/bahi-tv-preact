@@ -50,3 +50,12 @@
 @utility offer-fade-in {
   animation: offer-fade-in 240ms var(--ease-tv);
 }
+
+@utility scrim-tv-banner {
+  background-image: linear-gradient(
+    0deg,
+    rgb(10 8 6 / 0.92) 0%,
+    rgb(10 8 6 / 0.75) 60%,
+    rgb(10 8 6 / 0) 100%
+  );
+}
