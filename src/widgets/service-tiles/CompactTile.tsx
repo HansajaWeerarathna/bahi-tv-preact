@@ -1,7 +1,6 @@
 import { useLocation } from 'preact-iso';
 import { t } from '@/shared/i18n';
 import { useFocusable } from '@/shared/remote-navigation';
-import { lastHomeFocus } from './last-home-focus';
 import { UnreadBadge } from './UnreadBadge';
 import type { CompactTileData } from './tiles';
 
@@ -14,9 +13,8 @@ export function CompactTile({ tile }: CompactTileProps) {
   const focusId = `tile-${tile.id}`;
   const { focusProps } = useFocusable({
     id: focusId,
-    group: 'compact-tiles',
+    group: 'home-tiles',
     onSelect: () => {
-      lastHomeFocus.value = focusId;
       route(tile.path);
     },
   });

@@ -1,7 +1,6 @@
 import { useLocation } from 'preact-iso';
 import { t } from '@/shared/i18n';
 import { useFocusable } from '@/shared/remote-navigation';
-import { lastHomeFocus } from './last-home-focus';
 import type { PrimaryTileData } from './tiles';
 
 type PrimaryTileProps = {
@@ -13,9 +12,8 @@ export function PrimaryTile({ tile }: PrimaryTileProps) {
   const focusId = `tile-${tile.id}`;
   const { focusProps } = useFocusable({
     id: focusId,
-    group: 'primary-tiles',
+    group: 'home-tiles',
     onSelect: () => {
-      lastHomeFocus.value = focusId;
       route(tile.path);
     },
   });

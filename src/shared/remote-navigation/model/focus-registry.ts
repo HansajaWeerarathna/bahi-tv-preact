@@ -4,14 +4,19 @@ import { findNextFocus } from '../lib/find-next-focus';
 
 type FocusEntry = {
   group: string;
+  returnToLast: boolean;
   getElement: () => HTMLElement | null;
   onSelect?: () => void;
 };
 
 export const focusedId = signal<string | null>(null);
+// The last item the guest pressed OK on: Home returns focus here.
+export const lastSelectedId = signal<string | null>(null);
 
 const entries = new Map<string, FocusEntry>();
 const lastFocusedByGroup = new Map<string, string>();
+// The last content item focused (not a returnToLast item): where header and notice return to.
+let lastContentId: string | null = null;
 
 export function registerFocusable(id: string, entry: FocusEntry): () => void {
   entries.set(id, entry);
@@ -26,6 +31,7 @@ export function setFocus(id: string): boolean {
   if (!entry || !element) return false;
   focusedId.value = id;
   lastFocusedByGroup.set(entry.group, id);
+  if (!entry.returnToLast) lastContentId = id;
   element.focus({ preventScroll: true });
   return true;
 }
@@ -49,8 +55,19 @@ export function moveFocus(direction: FocusDirection): void {
     candidates.push(toCandidate(id, entry.group, element));
   }
 
-  const next = findNextFocus(direction, from, candidates);
+  // Stay inside the current group when it has something in that direction; otherwise look everywhere.
+  const sameGroup = candidates.filter((candidate) => candidate.group === current.group);
+  const next =
+    findNextFocus(direction, from, sameGroup) ?? findNextFocus(direction, from, candidates);
   if (!next) return;
+
+  // Header and notice items return to the last content item, if it is in that direction.
+  const returnTarget = current.returnToLast ? lastContentId : null;
+  const returnCandidate = candidates.filter((candidate) => candidate.id === returnTarget);
+  if (returnTarget && findNextFocus(direction, from, returnCandidate)) {
+    setFocus(returnTarget);
+    return;
+  }
 
   const remembered = lastFocusedByGroup.get(next.group);
   const isEnteringGroup = next.group !== current.group;
@@ -65,5 +82,6 @@ export function moveFocus(direction: FocusDirection): void {
 export function selectFocused(): void {
   const id = focusedId.value;
   if (id === null) return;
+  lastSelectedId.value = id;
   entries.get(id)?.onSelect?.();
 }

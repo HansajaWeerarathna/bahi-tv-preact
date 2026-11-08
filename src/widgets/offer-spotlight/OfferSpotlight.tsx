@@ -25,8 +25,9 @@ function SpotlightContent() {
   useRemoteKeyHandler((action) => {
     if (focusedId.value !== SPOTLIGHT_ID) return false;
     if (action !== 'left' && action !== 'right') return false;
-    const isForward = (action === 'right') !== isRtl.value;
-    showNextOffer(isForward ? 1 : -1);
+    // In Arabic the layout is mirrored, so 'left' moves forward.
+    const forward = isRtl.value ? action === 'left' : action === 'right';
+    showNextOffer(forward ? 1 : -1);
     return true;
   });
 

@@ -27,6 +27,7 @@ function NoticeButton({ notice }: NoticeButtonProps) {
   const { focusProps } = useFocusable({
     id: 'notice',
     group: 'notice',
+    returnToLast: true,
     onSelect: () => route(notice.kind === 'messages' ? ROUTES.messages : ROUTES.checkOut),
   });
 

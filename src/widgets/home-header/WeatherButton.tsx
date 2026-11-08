@@ -20,7 +20,7 @@ export function WeatherButton() {
   const { route } = useLocation();
   const { focusProps } = useFocusable({
     id: 'header-weather',
-    group: 'header-weather',
+    group: 'header-actions',
     onSelect: () => route(ROUTES.weather),
   });
   const current = weather.value;
