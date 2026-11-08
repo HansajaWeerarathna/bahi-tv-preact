@@ -1,4 +1,5 @@
 import { signal } from '@preact/signals';
+import { assetUrl } from '@/shared/config/base';
 import type { Offer } from './types';
 
 export const OFFERS: Offer[] = [
@@ -27,7 +28,7 @@ export const OFFERS: Offer[] = [
       ],
       ar: ['شطائر صغيرة', 'كعك مع القشطة والمربى', 'حلويات', 'إبريق شاي لكل ضيف'],
     },
-    image: '/images/offers/afternoon-tea.jpg',
+    image: assetUrl('images/offers/afternoon-tea.jpg'),
   },
   {
     id: 'offer-excavation',
@@ -49,7 +50,7 @@ export const OFFERS: Offer[] = [
       en: ['A guide for the whole visit', 'Transport from the hotel and back', 'Water and a hat'],
       ar: ['مرشد طوال الزيارة', 'مواصلات من الفندق وإليه', 'ماء وقبعة'],
     },
-    image: '/images/offers/heritage-tour.jpg',
+    image: assetUrl('images/offers/heritage-tour.jpg'),
     photoCredit: 'Photo: Ajman Fort by Ahmed Fouad, CC BY-SA 3.0, via Wikimedia Commons',
   },
   {
@@ -72,7 +73,7 @@ export const OFFERS: Offer[] = [
       en: ['Private boat and skipper', 'Soft drinks and snacks', 'Up to 4 guests'],
       ar: ['قارب خاص مع القبطان', 'مشروبات خفيفة ووجبات صغيرة', 'حتى 4 ضيوف'],
     },
-    image: '/images/offers/sunset-boat-trip.jpg',
+    image: assetUrl('images/offers/sunset-boat-trip.jpg'),
   },
   {
     id: 'offer-activities',
@@ -104,7 +105,7 @@ export const OFFERS: Offer[] = [
         'مجانية لنزلاء الفندق',
       ],
     },
-    image: '/images/offers/daily-activities.jpg',
+    image: assetUrl('images/offers/daily-activities.jpg'),
   },
 ];
 
