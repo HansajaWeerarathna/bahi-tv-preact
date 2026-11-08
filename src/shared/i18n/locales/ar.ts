@@ -19,7 +19,7 @@ export const ar: Dictionary = {
     night: 'ليلة سعيدة',
     line: '{salutation}، {name}',
     welcomeRoom: 'مرحباً بك في الغرفة {number}',
-    subline: 'نتمنى لك إقامة سعيدة',
+    subline: 'نتمنى لك إقامة سعيدة في قصر باهي عجمان',
     occasion: {
       anniversary: 'ذكرى زواج سعيدة',
       birthday: 'عيد ميلاد سعيد',
@@ -52,6 +52,10 @@ export const ar: Dictionary = {
     alarm: 'المنبه',
     stay: 'إقامتك',
     roomControls: 'التحكم بالغرفة',
+    unreadCount: 'لديك {count} رسائل غير مقروءة',
+  },
+  offer: {
+    seeDetails: 'عرض التفاصيل',
   },
   hints: {
     navigate: 'تنقل',

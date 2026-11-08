@@ -9,4 +9,8 @@ export type Offer = {
   timing: Localized;
   location: Localized;
   price: Localized;
+  image: string;
+  photoCredit?: string;
 };
+
+export type OfferLayout = 'count' | 'spotlight';

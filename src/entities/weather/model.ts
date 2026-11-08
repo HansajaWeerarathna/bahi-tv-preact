@@ -1,7 +1,7 @@
 import { signal } from '@preact/signals';
 import type { Weather } from './types';
 
-export const weather = signal<Weather>({
+export const DEFAULT_WEATHER: Weather = {
   isAvailable: true,
   temperatureC: 24,
   condition: 'partlyCloudy',
@@ -10,4 +10,6 @@ export const weather = signal<Weather>({
   wind: '12 km/h',
   highC: 29,
   lowC: 24,
-});
+};
+
+export const weather = signal<Weather>(DEFAULT_WEATHER);

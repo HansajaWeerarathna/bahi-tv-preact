@@ -17,7 +17,7 @@ export const en = {
     night: 'Good night',
     line: '{salutation}, {name}',
     welcomeRoom: 'Welcome to Room {number}',
-    subline: 'We wish you a pleasant stay',
+    subline: 'We wish you a pleasant stay at Bahi Ajman Palace',
     occasion: {
       anniversary: 'Happy anniversary',
       birthday: 'Happy birthday',
@@ -50,6 +50,10 @@ export const en = {
     alarm: 'Alarm',
     stay: 'Your stay',
     roomControls: 'Room controls',
+    unreadCount: '{count} unread messages',
+  },
+  offer: {
+    seeDetails: 'See details',
   },
   hints: {
     navigate: 'Navigate',
