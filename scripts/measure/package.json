@@ -1,0 +1,8 @@
+{
+  "name": "bahi-tv-measure",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "playwright-core": "^1.65.0"
+  }
+}
