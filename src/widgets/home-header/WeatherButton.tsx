@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { computed } from '@preact/signals';
 import { useLocation } from 'preact-iso';
 import { hotelTime } from '@/entities/clock';
@@ -29,9 +30,12 @@ export function WeatherButton() {
       type="button"
       {...focusProps}
       aria-label={current.isAvailable ? undefined : t('header.weatherUnavailable')}
-      class="tv-focus -mx-2.5 -my-1 flex items-center gap-2 rounded-sm px-2.5 py-1 text-label font-medium tabular-nums"
+      class={clsx(
+        'tv-focus -mx-2.5 -my-1 flex items-center gap-2 rounded-sm px-2.5 py-1 text-label leading-[normal] font-medium tabular-nums',
+        !current.isAvailable && 'text-cream-muted',
+      )}
     >
-      {isNight.value ? <MoonIcon size={24} /> : <SunIcon size={24} />}
+      {current.isAvailable && (isNight.value ? <MoonIcon size={24} /> : <SunIcon size={24} />)}
       <span>{current.isAvailable ? `${current.temperatureC}°C` : '–'}</span>
     </button>
   );
