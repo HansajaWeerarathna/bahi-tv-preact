@@ -20,9 +20,9 @@ Interactive frontend prototype; hotel data and service actions are simulated.
 
 ## The home page
 
-![The home screen in Arabic, with the layout mirrored](docs/screenshots/home-ar.png)
-
 ![The home screen in English](docs/screenshots/home-en.png)
+
+![The home screen in Arabic, with the layout mirrored](docs/screenshots/home-ar.png)
 
 A two-minute walkthrough:
 
