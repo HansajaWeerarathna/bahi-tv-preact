@@ -55,6 +55,18 @@ export const en = {
   offer: {
     seeDetails: 'See details',
   },
+  messages: {
+    title: 'Messages',
+    empty: 'You have no messages right now.',
+    new: 'New',
+  },
+  checkOut: {
+    title: 'Check-out today',
+    body: 'Check-out is at {checkOutTime}. You can stay until {lateCheckOutTime} at no charge.',
+    done: 'Done. Your key works until {lateCheckOutTime}.',
+    requestLate: 'Request late check-out',
+    keepTime: 'Keep current time',
+  },
   frontDesk: {
     title: 'Front desk',
     body: 'Press 9 on the bedside phone, or ask us to call you back.',

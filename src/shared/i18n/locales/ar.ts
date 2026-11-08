@@ -57,6 +57,18 @@ export const ar: Dictionary = {
   offer: {
     seeDetails: 'عرض التفاصيل',
   },
+  messages: {
+    title: 'الرسائل',
+    empty: 'ليس لديك رسائل الآن.',
+    new: 'جديدة',
+  },
+  checkOut: {
+    title: 'المغادرة اليوم',
+    body: 'موعد المغادرة الساعة {checkOutTime}. يمكنك البقاء حتى الساعة {lateCheckOutTime} دون رسوم.',
+    done: 'تم. مفتاحك يعمل حتى الساعة {lateCheckOutTime}.',
+    requestLate: 'طلب مغادرة متأخرة',
+    keepTime: 'الاحتفاظ بالوقت الحالي',
+  },
   frontDesk: {
     title: 'الاستقبال',
     body: 'اضغط 9 على هاتف الغرفة، أو اطلب منا أن نتصل بك.',
