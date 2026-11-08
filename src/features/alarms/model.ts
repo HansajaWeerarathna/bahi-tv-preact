@@ -1,5 +1,6 @@
 import { effect, signal, untracked } from '@preact/signals';
 import { hotelTime } from '@/entities/clock';
+import { alarms, type Alarm } from '@/entities/alarm';
 import { showToast } from '@/shared/ui';
 import { t } from '@/shared/i18n';
 import type { TimeParts } from '@/shared/lib/time';
@@ -9,7 +10,6 @@ import {
   newDraft,
   ringKey,
   shouldRing,
-  type Alarm,
   type AlarmDraft,
   type DraftField,
   type NowParts,
@@ -18,7 +18,6 @@ import {
 const RING_TOAST_MS = 8000;
 const NOTE_TOAST_MS = 1600;
 
-export const alarms = signal<Alarm[]>([]);
 export const alarmDraft = signal<AlarmDraft>(newDraft());
 
 let nextId = 1;

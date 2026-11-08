@@ -16,3 +16,8 @@ export const DEFAULT_GUEST: Guest = {
 };
 
 export const guest = signal<Guest>(DEFAULT_GUEST);
+
+// Clears the previous guest, as between stays.
+export function resetGuestData(): void {
+  guest.value = DEFAULT_GUEST;
+}

@@ -19,15 +19,26 @@ const KEY_ACTIONS: Readonly<Record<string, RemoteAction>> = {
   H: 'home',
   m: 'menu',
   M: 'menu',
+  '+': 'volumeUp',
+  '=': 'volumeUp',
+  AudioVolumeUp: 'volumeUp',
+  '-': 'volumeDown',
+  _: 'volumeDown',
+  AudioVolumeDown: 'volumeDown',
 };
 
 const ARROW_REPEAT_MS = 120;
+
+type RemoteControlProps = {
+  // While blocked (system screens), only handlers registered as `always` respond.
+  blocked?: boolean;
+};
 
 function isFocusDirection(action: RemoteAction): action is FocusDirection {
   return action === 'up' || action === 'down' || action === 'left' || action === 'right';
 }
 
-export function RemoteControl() {
+export function RemoteControl({ blocked = false }: RemoteControlProps) {
   const { path, route } = useLocation();
 
   useEffect(() => {
@@ -44,7 +55,8 @@ export function RemoteControl() {
         lastArrowAt = now;
       }
 
-      if (runKeyHandlers(action, event)) return;
+      if (runKeyHandlers(action, event, blocked)) return;
+      if (blocked) return;
       if (isFocusDirection(action)) moveFocus(action);
       else if (action === 'select') selectFocused();
       else if (action === 'back' && path !== ROUTES.home) history.back();
@@ -54,7 +66,7 @@ export function RemoteControl() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [path, route]);
+  }, [path, route, blocked]);
 
   return null;
 }

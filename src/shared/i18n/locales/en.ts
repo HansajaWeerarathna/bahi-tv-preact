@@ -172,6 +172,9 @@ export const en = {
       sat: 'Sat',
     },
   },
+  volume: {
+    level: 'Volume {percent}%',
+  },
   roomService: {
     title: 'Room service',
     subtitle: 'Food, requests, restaurants and amenities',

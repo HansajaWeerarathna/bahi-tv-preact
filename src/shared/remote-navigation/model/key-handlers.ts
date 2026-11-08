@@ -1,17 +1,32 @@
-export type KeyHandler = (action: RemoteAction, event: KeyboardEvent) => boolean;
-
 import type { RemoteAction } from '../types';
 
-const handlers: KeyHandler[] = [];
+export type KeyHandler = (action: RemoteAction, event: KeyboardEvent) => boolean;
 
-export function pushKeyHandler(handler: KeyHandler): () => void {
-  handlers.push(handler);
+type RegisteredHandler = {
+  handler: KeyHandler;
+  // Runs even while the remote is blocked (for example during the system screens).
+  always: boolean;
+};
+
+const handlers: RegisteredHandler[] = [];
+
+export function pushKeyHandler(handler: KeyHandler, always = false): () => void {
+  const entry: RegisteredHandler = { handler, always };
+  handlers.push(entry);
   return () => {
-    const index = handlers.indexOf(handler);
+    const index = handlers.indexOf(entry);
     if (index !== -1) handlers.splice(index, 1);
   };
 }
 
-export function runKeyHandlers(action: RemoteAction, event: KeyboardEvent): boolean {
-  return [...handlers].reverse().some((handler) => handler(action, event));
+// The newest handler runs first; a handler returns true to consume the key.
+export function runKeyHandlers(
+  action: RemoteAction,
+  event: KeyboardEvent,
+  blocked: boolean,
+): boolean {
+  return [...handlers]
+    .reverse()
+    .filter((entry) => !blocked || entry.always)
+    .some((entry) => entry.handler(action, event));
 }

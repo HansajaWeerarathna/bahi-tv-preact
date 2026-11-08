@@ -173,6 +173,9 @@ export const ar: Dictionary = {
       sat: 'سبت',
     },
   },
+  volume: {
+    level: 'الصوت {percent}%',
+  },
   roomService: {
     title: 'خدمة الغرف',
     subtitle: 'الطعام والطلبات والمطاعم والمرافق',

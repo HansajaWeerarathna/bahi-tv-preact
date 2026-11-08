@@ -59,3 +59,9 @@
     rgb(10 8 6 / 0) 100%
   );
 }
+
+@keyframes tv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -9,6 +9,7 @@ const LEGEND_ROWS: readonly { keys: string; effect: string }[] = [
   { keys: 'C', effect: 'Check-out day on or off' },
   { keys: 'P', effect: 'Offer layout' },
   { keys: 'S', effect: 'Review states' },
+  { keys: '+ and -', effect: 'Volume up or down' },
   { keys: 'D', effect: 'This legend' },
 ];
 

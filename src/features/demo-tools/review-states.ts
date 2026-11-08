@@ -1,5 +1,7 @@
 import { simulatedTime } from '@/entities/clock';
-import { DEFAULT_GUEST, guest } from '@/entities/guest';
+import { resetAlarms } from '@/entities/alarm';
+import { DEFAULT_GUEST, guest, resetGuestData } from '@/entities/guest';
+import { systemState } from '@/entities/session';
 import { DEFAULT_MESSAGES, messages, type Message } from '@/entities/message';
 import { highContrast, largerText } from '@/entities/preferences';
 import { DEFAULT_WEATHER, weather } from '@/entities/weather';
@@ -29,6 +31,13 @@ const AIRPORT_CAR_MESSAGE: Message = {
     ar: 'تم تأكيد السيارة الخاصة إلى المطار الدولي. اتصل بالتحويلة 9 للمساعدة في الأمتعة.',
   },
 };
+
+// Zero guest data: what the room looks like with no guest in it.
+function clearGuestData(): void {
+  resetGuestData();
+  messages.value = [];
+  resetAlarms();
+}
 
 const WELCOME_MESSAGES = DEFAULT_MESSAGES.filter((message) => message.id === 'welcome');
 
@@ -93,6 +102,22 @@ export const REVIEW_STATES: readonly ReviewState[] = [
     apply: () => {
       setEvening();
       weather.value = { ...DEFAULT_WEATHER, isAvailable: false };
+    },
+  },
+  {
+    number: 7,
+    label: 'Start-up loading',
+    apply: () => {
+      clearGuestData();
+      systemState.value = 'loading';
+    },
+  },
+  {
+    number: 8,
+    label: 'Between guests',
+    apply: () => {
+      clearGuestData();
+      systemState.value = 'reset';
     },
   },
   {
