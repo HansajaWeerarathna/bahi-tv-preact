@@ -24,7 +24,9 @@ export function HomeBackground() {
       />
       <div class="absolute inset-0 scrim-lobby" />
       {offerLayout.value === 'spotlight' && offer && (
-        <SpotlightPhoto key={offer.id} src={offer.image} animated={animated} />
+        // No key: the same image element stays on screen while the next offer loads,
+        // so the lobby photo never shows between two offers.
+        <SpotlightPhoto src={offer.image} animated={animated} />
       )}
     </div>
   );
