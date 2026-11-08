@@ -17,7 +17,7 @@ export function TvBanner({ channel, slot, isVisible, use12Hour }: TvBannerProps)
   return (
     <div
       class={clsx(
-        'absolute inset-x-0 bottom-0 flex flex-col gap-2.5 scrim-tv-banner px-24 pt-16 pb-[38px] leading-[normal] transition-[opacity,transform] duration-[240ms] ease-tv',
+        'absolute inset-x-0 bottom-0 flex flex-col gap-2.5 scrim-tv-banner px-24 pt-16 pb-[54px] leading-[normal] transition-[opacity,transform] duration-[240ms] ease-tv',
         isVisible ? 'opacity-100' : 'pointer-events-none translate-y-4 opacity-0',
       )}
     >
@@ -42,11 +42,11 @@ export function TvBanner({ channel, slot, isVisible, use12Hour }: TvBannerProps)
               {timeLabel}
             </span>
           </div>
-          <div class="-mt-4 h-1.5 w-[720px] max-w-full overflow-hidden rounded-[3px] bg-cream/20">
+          <div class="h-1.5 w-[720px] max-w-full overflow-hidden rounded-[3px] bg-cream/20">
             <span class="block h-full bg-cream" style={{ width: `${slot.progress}%` }} />
           </div>
           {channel.next && (
-            <div class="mt-4 flex items-baseline gap-6 text-label leading-[normal] text-cream-muted">
+            <div class="flex items-baseline gap-6 text-label leading-[normal] text-cream-muted">
               <span class="text-cream-subtle">{t('tv.next')}</span>
               <span>{pickText(channel.next)}</span>
               <span class="tabular-nums">{formatTvHour(slot.end, use12Hour)}</span>
