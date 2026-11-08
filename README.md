@@ -1,29 +1,14 @@
 # Bahi TV
 
-An in-room TV app for Bahi Ajman Palace Hotel. A guest uses the TV remote to call the front desk, order food, request housekeeping, watch TV, book experiences, set an alarm and control the room, in English or Arabic.
+Bahi TV turns a Figma design into a remote-first hotel TV interface, using Preact and TypeScript. The brief covered the home page and its navigation. This prototype extends that foundation with connected guest-service flows, in English and Arabic.
 
-|                                                       |                                                                                               |
-| ----------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| **Guest view**                                        | https://hansajaweerarathna.github.io/bahi-tv-preact/                                          |
-| **Demo view**, with extra keys for showing each state | https://hansajaweerarathna.github.io/bahi-tv-preact/?demo                                     |
-| **Design**                                            | [Figma file](https://www.figma.com/design/gV7jxln7zVVz6DtArLNM81/Bahi-TV-Screens?node-id=0-1) |
+Navigate with the arrow keys, Enter and Escape. Hotel data and service actions are simulated: no orders, bookings, alerts or room-control commands reach hotel systems.
 
-![Moving around the home screen with the remote](docs/screenshots/flows/home-navigation.gif)
-
-|                                   |                                                    |
-| --------------------------------- | -------------------------------------------------- |
-| JavaScript at start-up            | 35.35 KB gzipped                                   |
-| CSS at start-up                   | 7.12 KB gzipped                                    |
-| Focus move with the CPU slowed 6× | 44 ms median                                       |
-| Random remote key presses         | 2600 presses, 0 errors                             |
-| Unit tests                        | 75 passing                                         |
-| Languages                         | English, and Arabic with the whole layout mirrored |
-| Routes                            | 24, with only Home loaded at start-up              |
-| TypeScript                        | Strict, with no `any` and no `@ts-ignore`          |
-
-## Try it
-
-Open either link and use a keyboard as the remote. Both are the same production build. The demo view only adds the extra keys below.
+|                    |                                                                                               |
+| ------------------ | --------------------------------------------------------------------------------------------- |
+| **Live prototype** | https://hansajaweerarathna.github.io/bahi-tv-preact/                                          |
+| **With demo keys** | https://hansajaweerarathna.github.io/bahi-tv-preact/?demo                                     |
+| **Design**         | [Figma file](https://www.figma.com/design/gV7jxln7zVVz6DtArLNM81/Bahi-TV-Screens?node-id=0-1) |
 
 | Keyboard            | TV remote | Action                        |
 | ------------------- | --------- | ----------------------------- |
@@ -35,151 +20,156 @@ Open either link and use a keyboard as the remote. Both are the same production 
 | + and -             | Volume    | Change the volume             |
 | 0 to 9              | Numbers   | Tune a channel on the TV page |
 
-| Demo key | Shows                                 |
-| -------- | ------------------------------------- |
-| P        | Promotional offers on the home screen |
-| N        | A new message                         |
-| C        | Check-out day                         |
-| S        | A list of eleven screen states        |
-| D        | The key legend                        |
+The demo link adds keys for showing each state: **P** promotional offers, **N** a new message, **C** check-out day, **S** a list of eleven screen states, **D** the key legend.
 
-## User flows
+## Scope
 
-### Promotional offers
+|               |                                                                                                                    |
+| ------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **The brief** | The home page, matching the Figma design, and its remote navigation                                                |
+| **Extended**  | Room service, requests, alarms, search, TV, offers, room controls, settings, Arabic, high contrast and larger text |
+| **Simulated** | Guest details, messages, weather, orders, requests, alerts and room controls. Actions update local state only      |
 
-When the hotel has offers to promote, they take over the home screen background. The carousel moves on by itself and pauses while the guest is on it.
+## The home page
+
+![The home screen](docs/screenshots/home-en.png)
+
+A two-minute walkthrough:
+
+1. Press the arrow keys to move across the tiles. Focus stops at the edges.
+2. Press Up from a tile to reach the header, then Down to return to the same tile.
+3. Press Enter on a tile, then Escape. Focus comes back to the tile you opened.
+4. Press Escape on Home. It shows a hint instead of leaving the app.
+5. With the demo link, press P for the promotional layout and N for a new message.
+
+When the hotel has offers to promote, they take over the background. The carousel advances on its own and pauses while the guest is on it.
 
 ![Promotional offers on the home screen](docs/screenshots/flows/promotional-offers.gif)
 
-The same screen in Arabic. The layout mirrors, and the offer text sits on the left.
-
 ![Promotional offer in Arabic, with the layout mirrored](docs/screenshots/states/arabic-promotion.jpg)
 
-<details>
-<summary><strong>Order food</strong>: choose a dish and quantity, review, place the order</summary>
+## Design translation
 
-![Ordering food](docs/screenshots/flows/order-food.gif)
+The Figma file defines the main screens, their composition and their visual language. The code carries that across as a small set of reusable rules.
 
-</details>
+| In the design                        | In the code                                                                                                                      |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| 1920×1080 frames                     | A fixed canvas with one uniform scale transform ([`TvCanvas`](src/app/TvCanvas.tsx))                                             |
+| Safe margins                         | 96px and 54px padding, 5% of each edge, on every screen layout                                                                   |
+| Two levels of service tile           | 188px primary and 88px compact rows, driven by one list ([`tiles.ts`](src/widgets/service-tiles/tiles.ts))                       |
+| Serif greeting, sans-serif interface | A type scale of 64, 48, 36, 28 and 24px as tokens ([`theme.css`](src/app/styles/theme.css))                                      |
+| Warm dark palette with a gold accent | Colour tokens, so high contrast overrides values rather than adding styles                                                       |
+| Focus state                          | A raised surface, 4px gold ring and a small scale, from one `tv-focus` utility ([`utilities.css`](src/app/styles/utilities.css)) |
+| Text over photography                | A vertical scrim gradient that keeps the greeting and tiles readable                                                             |
 
-<details>
-<summary><strong>Request housekeeping</strong>: extra towels sent to the room</summary>
+A static frame can't specify behaviour, so these were worked out in code:
 
-![Sending a guest request](docs/screenshots/flows/guest-request.gif)
+- Where focus goes from each item, and where it returns after Back or Home
+- When a notice appears, and which notice takes priority
+- Greetings by hotel time, and fallbacks for missing or long guest names
+- Arabic mirroring with logical CSS properties
+- High contrast and larger text, including labels that need to wrap
+- Missing weather, and the screen shown between guests
 
-</details>
+## Three representative flows
 
-<details>
-<summary><strong>Set an alarm</strong>: time, days, save</summary>
+### Home navigation
 
-![Setting an alarm](docs/screenshots/flows/alarm.gif)
+![Moving between the header and tiles, opening a service and returning](docs/screenshots/flows/home-navigation.gif)
 
-</details>
+**What it demonstrates:** the core of the brief. Focus moves between tile rows and the header without a hand-written route between them, and returning from a service restores the item the guest opened.
 
-<details>
-<summary><strong>Search</strong>: on-screen keyboard to result</summary>
+### Arabic and right-to-left
 
-![Searching with the on-screen keyboard](docs/screenshots/flows/search.gif)
+![The same navigation on the mirrored Arabic layout](docs/screenshots/flows/arabic-layout.gif)
 
-</details>
+**What it demonstrates:** the layout mirrors from one language setting. Left moves to the item that is physically on the left, so grid navigation needs no key swap. The offer carousel is the deliberate exception, where Left means "next" in Arabic because its order is reversed.
 
-<details>
-<summary><strong>Things to do</strong>: browse offers and open the booking code</summary>
+### Ordering food
 
-![Browsing things to do](docs/screenshots/flows/things-to-do.gif)
+![Choosing a dish, reviewing the order and confirming it](docs/screenshots/flows/order-food.gif)
 
-</details>
+**What it demonstrates:** multi-step state beyond a single screen. The quantity carries into the basket, the basket into the review, and confirmation clears it and adds a message. The confirmation is simulated.
 
-<details>
-<summary><strong>Watch TV</strong>: change channel and open the guide</summary>
+## Engineering decisions
 
-![Watching TV](docs/screenshots/flows/tv.gif)
+### Focus follows screen geometry
 
-</details>
+- **Problem:** a neighbour map for every item is slow to maintain and has to be reversed for Arabic.
+- **Decision:** directional movement uses each element's real position, with group memory and focus recovery ([`focus-registry.ts`](src/shared/remote-navigation/model/focus-registry.ts), [`find-next-focus.ts`](src/shared/remote-navigation/lib/find-next-focus.ts)). Screens register focusable controls without maintaining a fixed neighbour map.
+- **Trade-off:** each move reads element positions, and some screens still need explicit handling, such as room service tabs and alarm fields.
 
-<details>
-<summary><strong>Room controls</strong>: lights and temperature</summary>
+### Focus recovery handles disappearing elements
 
-![Using room controls](docs/screenshots/flows/room-controls.gif)
+- **Problem:** a notice can disappear while it holds focus, which would leave the remote with nothing to act on.
+- **Decision:** focus moves to the last content item, or to the first item still on screen.
+- **Trade-off:** when the last item has also gone, the fallback is the first registered item, which may not be the closest one.
 
-</details>
+### Secondary screens load on demand
 
-<details>
-<summary><strong>Messages</strong>: a new message appears on the home screen</summary>
+- **Problem:** a TV should show the home screen as soon as possible.
+- **Decision:** Home loads eagerly, and other screens use lazy imports ([`App.tsx`](src/app/App.tsx)). The QR library loads only when a code is shown.
+- **Trade-off:** the first visit to a screen waits for its file to download.
 
-![Opening a new message](docs/screenshots/flows/live-notices.gif)
+### Document preferences live in one place
 
-</details>
+- **Problem:** language, direction, contrast and text size each affect the whole interface.
+- **Decision:** one effect writes them to the document root ([`useDocumentPreferences.ts`](src/app/useDocumentPreferences.ts)), and CSS tokens respond to those attributes.
+- **Trade-off:** preferences apply to the whole document, so one region can't differ from the rest.
 
-<details>
-<summary><strong>Late check-out</strong>: from the check-out day notice</summary>
+### Time comes from the hotel's time zone
 
-![Requesting late check-out](docs/screenshots/flows/check-out.gif)
+- **Problem:** the greeting and clock must match the hotel, even when the browser is set to a different time zone.
+- **Decision:** the time is converted to Asia/Dubai from one setting.
+- **Trade-off:** it still depends on the device's clock being correct.
 
-</details>
+### One canvas, scaled uniformly
 
-<details>
-<summary><strong>Front desk and emergency</strong>: a call-back, and an emergency that asks for confirmation</summary>
+- **Problem:** the design is drawn at 1920×1080, and TVs and browser windows vary.
+- **Decision:** one transform preserves the design's proportions.
+- **Trade-off:** other aspect ratios are letterboxed, and real TV rendering still needs checking.
 
-![Front desk and emergency](docs/screenshots/flows/front-desk-emergency.gif)
+### State stays in memory
 
-</details>
+- **Problem:** the prototype has no hotel backend to store guest data.
+- **Decision:** signals hold state in memory, and nothing is written to browser storage.
+- **Trade-off:** a reload resets everything. Persistence belongs with a real hotel integration.
 
-<details>
-<summary><strong>Your stay and weather</strong></summary>
+## TV-oriented interaction design
 
-![Your stay and the weather](docs/screenshots/flows/stay-and-weather.gif)
+- **Preact Signals** update only what reads a value. Each minute the clock changes its own text directly, and only the greeting and notice re-render.
+- **Held arrow keys** are limited to one move every 120 ms, so repeated presses can't queue up behind the remote.
+- **Tiles don't animate their focus ring.** Moving focus only transitions transform and colours, because animating `box-shadow` is expensive.
+- **Home screen text is 24px or larger**, for reading from a distance.
 
-</details>
+## Verification
 
-<details>
-<summary><strong>Arabic</strong>: the same remote keys on a mirrored layout</summary>
+| Evidence                      | Result                 |
+| ----------------------------- | ---------------------- |
+| Unit tests                    | 75 passing             |
+| JavaScript at start-up        | 35.43 KB gzipped       |
+| CSS at start-up               | 7.16 KB gzipped        |
+| Focus move at 6× CPU slowdown | 35 ms median           |
+| Random remote key presses     | 2600 presses, 0 errors |
 
-![Arabic layout](docs/screenshots/flows/arabic-layout.gif)
+Environment, commands and method are in [docs/measurements.md](docs/measurements.md). A slowed desktop browser isn't a physical TV, so these are comparison figures only.
 
-</details>
+The tests cover specific behaviour:
 
-<details>
-<summary><strong>Comfort settings</strong>: high contrast and larger text</summary>
+- [Home navigation](src/shared/remote-navigation/lib/find-next-focus.test.ts): edges without wrapping, moves between tile rows, the notice and the header, and skipping a switched-off tile
+- [Focus recovery](src/shared/remote-navigation/model/focus-registry.test.ts): a focused item being removed, nothing left on screen, and re-registration
+- Business rules: greeting options, notice priority, stay dates, Wi-Fi QR payloads and search
 
-![High contrast and larger text](docs/screenshots/flows/comfort-settings.gif)
+GitHub Actions runs the tests and the build before deploying. Lint and type checks are run locally:
 
-</details>
+```bash
+npm run lint
+npm run typecheck
+npm test
+npm run build
+```
 
-## Screen states
-
-The home screen adapts to who is in the room, the time and what the hotel's systems return.
-
-|                                                                                             |                                                                              |
-| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| ![Morning greeting](docs/screenshots/states/morning.jpg) Morning                            | ![Anniversary guest](docs/screenshots/states/anniversary.jpg) Guest occasion |
-| ![Unread messages](docs/screenshots/states/unread-messages.jpg) Unread messages             | ![Check-out day](docs/screenshots/states/check-out-day.jpg) Check-out day    |
-| ![Weather unavailable](docs/screenshots/states/weather-unavailable.jpg) Weather unavailable | ![Between guests](docs/screenshots/states/between-guests.jpg) Between guests |
-| ![High contrast](docs/screenshots/states/high-contrast.jpg) High contrast                   | ![Larger text](docs/screenshots/states/larger-text.jpg) Larger text          |
-
-## Decisions
-
-- **Focus moves by position on screen**, using each item's real rectangle, not a fixed list of neighbours. Arabic mirrors the layout, so the remote needs no key swap, and a new page needs no navigation code. The search is a pure function with unit tests.
-- **Focus can't get lost.** If the focused item disappears, focus moves to the last content item the guest was on.
-- **Home remembers where you were.** Back and Home return to the item you opened.
-- **One fixed 1920×1080 canvas**, scaled with a single transform, so the layout is identical on every TV size.
-- **Colours and sizes are design tokens** in Tailwind's `@theme`. High contrast and larger text change the tokens rather than adding separate styles.
-- **Hotel time** (Asia/Dubai) drives the clock and greeting, so a TV with the wrong clock still greets the guest correctly.
-- **Guest details stay in memory.** Nothing is saved to the browser, so nothing is left behind for the next guest.
-
-## Built for TV hardware
-
-A hotel TV has a slow processor and little memory, so performance shaped the build.
-
-- **Preact and Signals.** The same component model as React with a much smaller runtime. Signals update only what reads a value: each minute the clock changes its own text directly, and only the greeting and notice re-render.
-- **Only the home screen loads at start-up.** Every other page loads when it's first opened, and the QR library only when a code is shown.
-- **Tiles don't animate their focus ring.** Moving focus only transitions transform and colours, because animating `box-shadow` is expensive on a TV.
-- **Held arrow keys are limited** to one move every 120 ms, so focus never falls behind the remote.
-- **Every timer and listener is cleaned up** when its screen closes, because a TV app can run for days.
-
-Sizes are measured by gzipping every file `dist/index.html` loads, with Node's zlib. Focus speed is measured on the production build with Chrome's CPU slowed 6×, from the key press to the next painted frame.
-
-## How the code is organised
+## Architecture
 
 Feature-Sliced Design. Each layer imports only from the layers below it.
 
@@ -193,32 +183,112 @@ src/
   shared/     UI parts, remote navigation, i18n, time helpers
 ```
 
-Stack: Preact, Preact Signals, preact-iso, Tailwind CSS v4, Vite, strict TypeScript, Vitest.
-
-## Run it
+Run it locally:
 
 ```bash
 npm install
 npm run dev
 ```
 
-```bash
-npm test
-npm run build
-```
+To change the brand colour, edit `--color-gold` in `src/app/styles/theme.css`. To switch a tile off, set `enabled: false` in `src/widgets/service-tiles/tiles.ts`.
 
-## Change it
+## Limitations
 
-- **Brand colour:** `--color-gold` in `src/app/styles/theme.css`
-- **Hotel name:** `hotel.name` and `hotel.footerName` in `src/shared/i18n/locales/en/a.ts` and `ar/a.ts`
-- **Switch a tile off:** `enabled: false` in `src/widgets/service-tiles/tiles.ts`. The layout and navigation adjust on their own.
+- It has run in desktop Chrome only. Tizen and webOS send their own codes for some remote buttons, and those aren't mapped yet.
+- It needs Chromium 111 or newer, which Tailwind CSS v4 requires.
+- It needs a server that returns `index.html` for any path. A packaged TV app running from `file://` would need hash or in-memory routing.
+- All hotel data and actions are simulated.
 
-## Next steps
+## More flows
 
-- Test on the hotel's TV models and map their remote keys. Tizen and webOS send their own codes for some buttons, and so far it has run in desktop Chrome only.
-- Connect guest details, messages and weather to the hotel's systems. They are sample data today.
-- Package it for Tizen or webOS if the hotel doesn't serve it from a web server. Those apps run from `file://` and need hash or in-memory routing.
-- It targets Chromium 111 or newer, which Tailwind CSS v4 requires. Older TV browsers would need a different CSS build.
+<details>
+<summary><strong>Request housekeeping</strong></summary>
+
+![Sending a guest request](docs/screenshots/flows/guest-request.gif)
+
+</details>
+
+<details>
+<summary><strong>Set an alarm</strong></summary>
+
+![Setting an alarm](docs/screenshots/flows/alarm.gif)
+
+</details>
+
+<details>
+<summary><strong>Search</strong></summary>
+
+![Searching with the on-screen keyboard](docs/screenshots/flows/search.gif)
+
+</details>
+
+<details>
+<summary><strong>Things to do</strong></summary>
+
+![Browsing things to do](docs/screenshots/flows/things-to-do.gif)
+
+</details>
+
+<details>
+<summary><strong>Watch TV</strong></summary>
+
+![Watching TV](docs/screenshots/flows/tv.gif)
+
+</details>
+
+<details>
+<summary><strong>Room controls</strong></summary>
+
+![Using room controls](docs/screenshots/flows/room-controls.gif)
+
+</details>
+
+<details>
+<summary><strong>Messages</strong></summary>
+
+![Opening a new message](docs/screenshots/flows/live-notices.gif)
+
+</details>
+
+<details>
+<summary><strong>Late check-out</strong></summary>
+
+![Requesting late check-out](docs/screenshots/flows/check-out.gif)
+
+</details>
+
+<details>
+<summary><strong>Front desk and emergency</strong>, with a confirmation before an alert</summary>
+
+![Front desk and emergency](docs/screenshots/flows/front-desk-emergency.gif)
+
+</details>
+
+<details>
+<summary><strong>Your stay and weather</strong></summary>
+
+![Your stay and the weather](docs/screenshots/flows/stay-and-weather.gif)
+
+</details>
+
+<details>
+<summary><strong>High contrast and larger text</strong></summary>
+
+![High contrast and larger text](docs/screenshots/flows/comfort-settings.gif)
+
+</details>
+
+<details>
+<summary><strong>Screen states</strong></summary>
+
+|                                                                                             |                                                                              |
+| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| ![Morning greeting](docs/screenshots/states/morning.jpg) Morning                            | ![Anniversary guest](docs/screenshots/states/anniversary.jpg) Guest occasion |
+| ![Unread messages](docs/screenshots/states/unread-messages.jpg) Unread messages             | ![Check-out day](docs/screenshots/states/check-out-day.jpg) Check-out day    |
+| ![Weather unavailable](docs/screenshots/states/weather-unavailable.jpg) Weather unavailable | ![Between guests](docs/screenshots/states/between-guests.jpg) Between guests |
+| ![High contrast](docs/screenshots/states/high-contrast.jpg) High contrast                   | ![Larger text](docs/screenshots/states/larger-text.jpg) Larger text          |
+
+</details>
 
 ## Credits
 
