@@ -1,0 +1,29 @@
+@utility tile-surface {
+  background-color: var(--color-tile);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+
+@utility tv-focus {
+  outline: none;
+  transition-property: transform, background-color, box-shadow, border-color;
+  transition-duration: 150ms;
+  transition-timing-function: var(--ease-tv);
+
+  &[data-focused] {
+    z-index: 2;
+    background-color: var(--color-surface-2);
+    border-color: transparent;
+    box-shadow: 0 0 0 var(--focus-ring-width) var(--color-gold);
+  }
+}
+
+@utility scrim-lobby {
+  background-image: linear-gradient(
+    180deg,
+    rgb(20 16 12 / 0.42) 0%,
+    rgb(20 16 12 / 0.62) 44%,
+    rgb(20 16 12 / 0.92) 72%,
+    rgb(20 16 12 / 0.96) 100%
+  );
+}

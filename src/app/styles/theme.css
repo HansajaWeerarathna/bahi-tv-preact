@@ -1,0 +1,39 @@
+@theme {
+  --color-canvas: #14100c;
+  --color-surface-1: #1e1813;
+  --color-surface-2: #2a221b;
+  --color-surface-3: #362c23;
+  --color-tile: rgb(30 24 19 / 0.86);
+  --color-cream: #f7f1e8;
+  --color-cream-muted: #cdbca6;
+  --color-cream-subtle: #b3a693;
+  --color-line: rgb(247 241 232 / 0.14);
+  --color-line-strong: rgb(247 241 232 / 0.28);
+  --color-gold: #e5ba79;
+  --color-gold-deep: #b8925f;
+  --color-gold-ink: #1a140f;
+  --color-danger: #e0604e;
+
+  --font-sans: 'Alexandria', 'Segoe UI', Tahoma, Arial, sans-serif;
+  --font-serif: 'Noto Naskh Arabic', Georgia, serif;
+
+  --text-caption: calc(24px * var(--text-scale));
+  --text-caption--line-height: 1.2;
+  --text-label: calc(24px * var(--text-scale));
+  --text-label--line-height: 1.15;
+  --text-body: calc(28px * var(--text-scale));
+  --text-body--line-height: 1.15;
+  --text-title: calc(36px * var(--text-scale));
+  --text-title--line-height: 1.2;
+  --text-heading: calc(48px * var(--text-scale));
+  --text-heading--line-height: 1;
+  --text-display: calc(64px * var(--text-scale));
+  --text-display--line-height: 1.1;
+  --text-hero: calc(88px * var(--text-scale));
+  --text-hero--line-height: 1.05;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+
+  --ease-tv: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
