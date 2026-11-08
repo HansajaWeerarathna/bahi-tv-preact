@@ -14,6 +14,7 @@ import { TvPage } from '@/pages/tv';
 import { OfferPage, ThingsToDoPage } from '@/pages/things-to-do';
 import { CastPage } from '@/pages/cast';
 import { StayPage } from '@/pages/stay';
+import { RoomControlsPage } from '@/pages/room-controls';
 import { WeatherPage } from '@/pages/weather';
 import { WifiPage } from '@/pages/wifi';
 import {
@@ -49,6 +50,7 @@ export function App() {
           <Route path={ROUTES.cast} component={CastPage} />
           <Route path={ROUTES.stay} component={StayPage} />
           <Route path={ROUTES.weather} component={WeatherPage} />
+          <Route path={ROUTES.roomControls} component={RoomControlsPage} />
           <Route path={ROUTES.roomService} component={RoomServicePage} />
           <Route path={ROUTES.roomServiceItem} component={MenuItemPage} />
           <Route path={ROUTES.roomServiceRequest} component={RequestPage} />

@@ -127,6 +127,18 @@ export const ar: Dictionary = {
       rain: 'أمطار خفيفة',
     },
   },
+  roomControlsPage: {
+    title: 'التحكم بالغرفة',
+    intro: 'اضبط غرفتك من هنا. تظهر التغييرات على هذه الشاشة فقط حتى يُربط نظام الغرفة.',
+    lights: 'الإضاءة',
+    curtains: 'الستائر',
+    temperature: 'الحرارة',
+    doNotDisturb: 'عدم الإزعاج',
+    on: 'تشغيل',
+    off: 'إيقاف',
+    open: 'مفتوحة',
+    closed: 'مغلقة',
+  },
   roomService: {
     title: 'خدمة الغرف',
     subtitle: 'الطعام والطلبات والمطاعم والمرافق',

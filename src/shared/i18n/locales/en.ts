@@ -125,6 +125,19 @@ export const en = {
       rain: 'Light rain',
     },
   },
+  roomControlsPage: {
+    title: 'Room controls',
+    intro:
+      'Adjust your room from here. Changes show on this screen only until the room system is connected.',
+    lights: 'Lights',
+    curtains: 'Curtains',
+    temperature: 'Temperature',
+    doNotDisturb: 'Do not disturb',
+    on: 'On',
+    off: 'Off',
+    open: 'Open',
+    closed: 'Closed',
+  },
   roomService: {
     title: 'Room service',
     subtitle: 'Food, requests, restaurants and amenities',
