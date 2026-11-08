@@ -21,12 +21,14 @@ Measured on app code at commit `01f8ac4`, with the production build served by `n
 | Focus move, slowest 5%          | 54 ms                                                        | Same 60 moves                                    |
 | Random remote key presses       | 2,600 random key presses; no page or console errors recorded | One run                                          |
 
-## How to repeat this
+## Build used for the recorded measurements
 
 ```bash
 npm run build
 npm run preview
 ```
+
+The measurement scripts are not included in the current tree; these are recorded results, not a runnable benchmark suite.
 
 ## Method
 
