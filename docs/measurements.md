@@ -28,15 +28,6 @@ npm run build
 npm run preview
 ```
 
-In a second terminal:
-
-```bash
-node scripts/measure/bundle-size.mjs
-cd scripts/measure
-npm install
-node measure.mjs
-```
-
 ## Method
 
 - **Bundle size:** every JavaScript and CSS file named in `dist/index.html`, gzipped with Node's zlib at its default level.
