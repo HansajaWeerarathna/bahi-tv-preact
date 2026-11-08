@@ -7,6 +7,8 @@ export type Guest = {
   lastName: string;
   roomNumber: string;
   occasion: Occasion;
+  checkInDate: string;
+  checkInTime: string;
   checkOutDate: string;
   checkOutTime: string;
   lateCheckOutTime: string;

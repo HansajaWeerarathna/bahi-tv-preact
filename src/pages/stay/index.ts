@@ -1,0 +1,1 @@
+export { StayPage } from './StayPage';

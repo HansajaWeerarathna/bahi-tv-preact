@@ -17,6 +17,16 @@ export const OFFERS: Offer[] = [
     timing: { en: 'Daily, 3:30 to 6:00 PM', ar: 'يومياً، من 3:30 إلى 6:00 مساءً' },
     location: { en: 'Lobby Cafe', ar: 'مقهى الردهة' },
     price: { en: 'AED 185 per guest', ar: 'د.إ 185 للضيف' },
+    duration: { en: 'About 90 minutes', ar: 'حوالي 90 دقيقة' },
+    includes: {
+      en: [
+        'Finger sandwiches',
+        'Scones with clotted cream and jam',
+        'Pastries',
+        'A pot of tea per guest',
+      ],
+      ar: ['شطائر صغيرة', 'كعك مع القشطة والمربى', 'حلويات', 'إبريق شاي لكل ضيف'],
+    },
     image: '/images/offers/afternoon-tea.jpg',
   },
   {
@@ -34,6 +44,11 @@ export const OFFERS: Offer[] = [
     timing: { en: 'Tuesday and Friday, 8:30 AM', ar: 'الثلاثاء والجمعة، 8:30 صباحاً' },
     location: { en: 'Leaves from the main entrance', ar: 'تنطلق من المدخل الرئيسي' },
     price: { en: 'AED 320 per guest', ar: 'د.إ 320 للضيف' },
+    duration: { en: 'About 4 hours', ar: 'حوالي 4 ساعات' },
+    includes: {
+      en: ['A guide for the whole visit', 'Transport from the hotel and back', 'Water and a hat'],
+      ar: ['مرشد طوال الزيارة', 'مواصلات من الفندق وإليه', 'ماء وقبعة'],
+    },
     image: '/images/offers/heritage-tour.jpg',
     photoCredit: 'Photo: Ajman Fort by Ahmed Fouad, CC BY-SA 3.0, via Wikimedia Commons',
   },
@@ -52,6 +67,11 @@ export const OFFERS: Offer[] = [
     timing: { en: 'Daily, 4:45 to 6:30 PM', ar: 'يومياً، من 4:45 إلى 6:30 مساءً' },
     location: { en: 'Hotel beach', ar: 'شاطئ الفندق' },
     price: { en: 'AED 750 per boat', ar: 'د.إ 750 للقارب' },
+    duration: { en: 'About 90 minutes', ar: 'حوالي 90 دقيقة' },
+    includes: {
+      en: ['Private boat and skipper', 'Soft drinks and snacks', 'Up to 4 guests'],
+      ar: ['قارب خاص مع القبطان', 'مشروبات خفيفة ووجبات صغيرة', 'حتى 4 ضيوف'],
+    },
     image: '/images/offers/sunset-boat-trip.jpg',
   },
   {
@@ -69,6 +89,21 @@ export const OFFERS: Offer[] = [
     timing: { en: 'Daily, 7:00 AM to 8:00 PM', ar: 'يومياً، من 7:00 صباحاً إلى 8:00 مساءً' },
     location: { en: 'Hotel beach', ar: 'شاطئ الفندق' },
     price: { en: 'Free for hotel guests', ar: 'مجانية لنزلاء الفندق' },
+    duration: { en: 'About 60 minutes per session', ar: 'حوالي 60 دقيقة لكل جلسة' },
+    includes: {
+      en: [
+        'Beach yoga at 7:00 AM',
+        'Paddleboarding at 11:00 AM',
+        'Stargazing at 8:00 PM',
+        'Free for hotel guests',
+      ],
+      ar: [
+        'يوغا على الشاطئ الساعة 7:00 صباحاً',
+        'تجديف الساعة 11:00 صباحاً',
+        'مراقبة النجوم الساعة 8:00 مساءً',
+        'مجانية لنزلاء الفندق',
+      ],
+    },
     image: '/images/offers/daily-activities.jpg',
   },
 ];

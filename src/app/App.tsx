@@ -11,6 +11,14 @@ import { FrontDeskPage } from '@/pages/front-desk';
 import { MessagesPage } from '@/pages/messages';
 import { CheckOutPage } from '@/pages/check-out';
 import { TvPage } from '@/pages/tv';
+import { OfferPage, ThingsToDoPage } from '@/pages/things-to-do';
+import { CastPage } from '@/pages/cast';
+import { StayPage } from '@/pages/stay';
+import { AlarmEditPage, AlarmsPage } from '@/pages/alarms';
+import { RoomControlsPage } from '@/pages/room-controls';
+import { startAlarmRing } from '@/features/alarms';
+import { WeatherPage } from '@/pages/weather';
+import { WifiPage } from '@/pages/wifi';
 import {
   MenuItemPage,
   OrderDonePage,
@@ -26,6 +34,7 @@ import { useDocumentPreferences } from './useDocumentPreferences';
 export function App() {
   useDocumentPreferences();
   useEffect(() => startClock(), []);
+  useEffect(() => startAlarmRing(), []);
 
   return (
     <LocationProvider>
@@ -38,6 +47,15 @@ export function App() {
           <Route path={ROUTES.messages} component={MessagesPage} />
           <Route path={ROUTES.checkOut} component={CheckOutPage} />
           <Route path={ROUTES.tv} component={TvPage} />
+          <Route path={ROUTES.thingsToDo} component={ThingsToDoPage} />
+          <Route path={ROUTES.offer} component={OfferPage} />
+          <Route path={ROUTES.wifi} component={WifiPage} />
+          <Route path={ROUTES.cast} component={CastPage} />
+          <Route path={ROUTES.stay} component={StayPage} />
+          <Route path={ROUTES.weather} component={WeatherPage} />
+          <Route path={ROUTES.roomControls} component={RoomControlsPage} />
+          <Route path={ROUTES.alarms} component={AlarmsPage} />
+          <Route path={ROUTES.alarmEdit} component={AlarmEditPage} />
           <Route path={ROUTES.roomService} component={RoomServicePage} />
           <Route path={ROUTES.roomServiceItem} component={MenuItemPage} />
           <Route path={ROUTES.roomServiceRequest} component={RequestPage} />
