@@ -67,6 +67,14 @@ A static frame can't specify behaviour, so these were worked out in code:
 
 **What it demonstrates:** multi-step state beyond a single screen. The quantity carries into the basket, the basket into the review, and confirmation clears it and adds a message. The confirmation is simulated.
 
+### Promotional offers
+
+When the hotel has offers to promote, they take over the background. The carousel advances on its own and pauses while the guest is on it.
+
+![Promotional offers on the home screen](docs/screenshots/flows/promotional-offers.gif)
+
+![Promotional offer in Arabic, with the layout mirrored](docs/screenshots/states/arabic-promotion.jpg)
+
 ## Engineering decisions
 
 ### Focus follows screen geometry
@@ -203,17 +211,6 @@ The demo link adds keys for showing each state: **P** promotional offers, **N** 
 - All hotel data and actions are simulated.
 
 ## More flows
-
-<details>
-<summary><strong>Promotional offers</strong>: the carousel advances on its own, with the Arabic layout</summary>
-
-When the hotel has offers to promote, they take over the background. The carousel advances on its own and pauses while the guest is on it.
-
-![Promotional offers on the home screen](docs/screenshots/flows/promotional-offers.gif)
-
-![Promotional offer in Arabic, with the layout mirrored](docs/screenshots/states/arabic-promotion.jpg)
-
-</details>
 
 <details open>
 <summary><strong>Request housekeeping</strong></summary>
