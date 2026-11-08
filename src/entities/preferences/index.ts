@@ -1,1 +1,1 @@
-export { highContrast, largerText, use12Hour } from './model';
+export { highContrast, largerText, subtitles, use12Hour } from './model';

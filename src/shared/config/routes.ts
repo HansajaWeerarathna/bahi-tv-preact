@@ -20,6 +20,7 @@ export const ROUTES = {
   roomControls: '/room-controls',
   weather: '/weather',
   settings: '/settings',
+  remoteHelp: '/settings/remote',
   search: '/search',
   checkOut: '/check-out',
 } as const;

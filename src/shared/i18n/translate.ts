@@ -19,6 +19,11 @@ export function t(key: TranslationKey, values: Record<string, string | number> =
   );
 }
 
+// Reads a string in a given language, whatever the screen language is (used for search matching).
+export function tIn(lang: Language, key: TranslationKey): string {
+  return lookup(dictionaries[lang], key);
+}
+
 export function pickText(localized: Localized) {
   return localized[language.value];
 }

@@ -17,6 +17,8 @@ import { CastPage } from '@/pages/cast';
 import { StayPage } from '@/pages/stay';
 import { AlarmEditPage, AlarmsPage } from '@/pages/alarms';
 import { RoomControlsPage } from '@/pages/room-controls';
+import { RemoteHelpPage, SettingsPage } from '@/pages/settings';
+import { SearchPage } from '@/pages/search';
 import { startAlarmRing } from '@/features/alarms';
 import { WeatherPage } from '@/pages/weather';
 import { WifiPage } from '@/pages/wifi';
@@ -69,6 +71,9 @@ export function App() {
             <Route path={ROUTES.roomServiceOrder} component={OrderReviewPage} />
             <Route path={ROUTES.roomServiceOrderDone} component={OrderDonePage} />
             <Route path={ROUTES.roomServiceRequestDone} component={RequestDonePage} />
+            <Route path={ROUTES.settings} component={SettingsPage} />
+            <Route path={ROUTES.remoteHelp} component={RemoteHelpPage} />
+            <Route path={ROUTES.search} component={SearchPage} />
             <Route default component={PlaceholderPage} />
           </Router>
         ) : (
