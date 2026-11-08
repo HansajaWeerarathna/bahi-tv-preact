@@ -48,10 +48,13 @@ export function OrderReviewPage() {
     id: 'review-place',
     group: 'page-actions',
     onSelect: () => {
+      // An empty cart (for example after Back from the done screen) cannot be placed.
+      if (orderLines.value.length === 0) return;
       const time = formatClockTime(hotelTime.value, { language: 'en', use12Hour: use12Hour.value });
       const placed = placeOrder();
       addMessage(buildOrderMessage(placed, room, time));
-      route(ROUTES.roomServiceOrderDone);
+      // Replace the review in history, so Back from the done screen never returns to it.
+      route(ROUTES.roomServiceOrderDone, true);
     },
   });
   const clear = useFocusable({

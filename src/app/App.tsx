@@ -72,10 +72,11 @@ export function App() {
             <Route path={ROUTES.alarmEdit} component={AlarmEditPage} />
             <Route path={ROUTES.roomService} component={RoomServicePage} />
             <Route path={ROUTES.roomServiceItem} component={MenuItemPage} />
+            {/* Literal routes must come before ":requestId", or "done" is read as a request id. */}
+            <Route path={ROUTES.roomServiceRequestDone} component={RequestDonePage} />
             <Route path={ROUTES.roomServiceRequest} component={RequestPage} />
             <Route path={ROUTES.roomServiceOrder} component={OrderReviewPage} />
             <Route path={ROUTES.roomServiceOrderDone} component={OrderDonePage} />
-            <Route path={ROUTES.roomServiceRequestDone} component={RequestDonePage} />
             <Route path={ROUTES.settings} component={SettingsPage} />
             <Route path={ROUTES.remoteHelp} component={RemoteHelpPage} />
             <Route path={ROUTES.search} component={SearchPage} />
