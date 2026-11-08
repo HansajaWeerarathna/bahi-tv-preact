@@ -18,8 +18,10 @@ export function HomeBackground() {
         fetchpriority="high"
         class="absolute inset-0 size-full object-cover"
       />
-      <div class="scrim-lobby absolute inset-0" />
-      {offerLayout.value === 'spotlight' && offer && <SpotlightPhoto key={offer.id} src={offer.image} />}
+      <div class="absolute inset-0 scrim-lobby" />
+      {offerLayout.value === 'spotlight' && offer && (
+        <SpotlightPhoto key={offer.id} src={offer.image} />
+      )}
     </div>
   );
 }

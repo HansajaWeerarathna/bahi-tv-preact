@@ -34,7 +34,7 @@ function NoticeButton({ notice }: NoticeButtonProps) {
     <button
       type="button"
       {...focusProps}
-      class="tile-surface tv-focus flex h-[72px] w-full items-center justify-between gap-8 px-8 text-start"
+      class="tv-focus flex h-[72px] w-full items-center justify-between gap-8 tile-surface px-8 text-start"
     >
       <span class="text-body font-medium">{getNoticeText(notice)}</span>
       <span class="text-label font-semibold text-cream-muted">{t('notice.action')}</span>

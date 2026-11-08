@@ -25,7 +25,7 @@ export function SpotlightPhoto({ src }: SpotlightPhotoProps) {
             : 'absolute inset-0 size-full object-cover opacity-0 transition-opacity duration-[600ms]'
         }
       />
-      <div class="scrim-offer absolute inset-0" />
+      <div class="absolute inset-0 scrim-offer" />
     </div>
   );
 }

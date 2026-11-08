@@ -69,10 +69,21 @@ export const PRIMARY_TILES = [
 ] as const satisfies readonly PrimaryTileData[];
 
 export const COMPACT_TILES = [
-  { id: 'messages', Icon: MailIcon, labelKey: 'tiles.messages', path: ROUTES.messages, showsUnread: true },
+  {
+    id: 'messages',
+    Icon: MailIcon,
+    labelKey: 'tiles.messages',
+    path: ROUTES.messages,
+    showsUnread: true,
+  },
   { id: 'wifi', Icon: WifiIcon, labelKey: 'tiles.wifi', path: ROUTES.wifi },
   { id: 'cast', Icon: CastIcon, labelKey: 'tiles.cast', path: ROUTES.cast },
   { id: 'alarm', Icon: AlarmClockIcon, labelKey: 'tiles.alarm', path: ROUTES.alarms },
   { id: 'stay', Icon: BedDoubleIcon, labelKey: 'tiles.stay', path: ROUTES.stay },
-  { id: 'roomControls', Icon: SlidersIcon, labelKey: 'tiles.roomControls', path: ROUTES.roomControls },
+  {
+    id: 'roomControls',
+    Icon: SlidersIcon,
+    labelKey: 'tiles.roomControls',
+    path: ROUTES.roomControls,
+  },
 ] as const satisfies readonly CompactTileData[];

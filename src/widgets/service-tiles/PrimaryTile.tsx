@@ -24,12 +24,12 @@ export function PrimaryTile({ tile }: PrimaryTileProps) {
     <button
       type="button"
       {...focusProps}
-      class="tile-surface tv-focus flex h-[188px] flex-col items-start justify-between px-7 py-6 text-start data-[focused]:scale-[1.04]"
+      class="tv-focus flex h-[188px] flex-col items-start justify-between tile-surface px-7 py-6 text-start data-[focused]:scale-[1.04]"
     >
       <tile.Icon size={48} />
       <span class="flex flex-col gap-1">
         <span class="text-body font-semibold whitespace-nowrap">{t(tile.labelKey)}</span>
-        <span class="text-caption text-cream-muted whitespace-nowrap">
+        <span class="text-caption whitespace-nowrap text-cream-muted">
           {t(tile.hintKey, tile.hintValues)}
         </span>
       </span>

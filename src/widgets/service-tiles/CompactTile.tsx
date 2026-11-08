@@ -25,7 +25,7 @@ export function CompactTile({ tile }: CompactTileProps) {
     <button
       type="button"
       {...focusProps}
-      class="tile-surface tv-focus flex h-[88px] items-center gap-4 px-6 text-start data-[focused]:scale-[1.06]"
+      class="tv-focus flex h-[88px] items-center gap-4 tile-surface px-6 text-start data-[focused]:scale-[1.06]"
     >
       <span class="relative">
         <tile.Icon size={32} />
