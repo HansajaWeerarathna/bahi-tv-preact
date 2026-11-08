@@ -1,4 +1,4 @@
-import { useEffect } from 'preact/hooks';
+import { useEffect, useLayoutEffect } from 'preact/hooks';
 import { useLocation } from 'preact-iso';
 import { offerLayout, offers, showNextOffer, spotlightIndex } from '@/entities/offer';
 import { ROUTES } from '@/shared/config';
@@ -38,7 +38,7 @@ function SpotlightContent() {
     return () => clearInterval(timerId);
   }, []);
 
-  useEffect(
+  useLayoutEffect(
     () => () => {
       if (focusedId.value === SPOTLIGHT_ID) setFocus(THINGS_TO_DO_TILE_ID);
     },
