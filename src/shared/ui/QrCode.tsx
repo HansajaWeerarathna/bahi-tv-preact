@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'preact/hooks';
-import QRCode from 'qrcode';
 
 type QrCodeProps = {
   value: string;
@@ -9,13 +8,27 @@ type QrCodeProps = {
   light?: string;
 };
 
-// Renders a QR code as SVG. The `qrcode` library builds the markup, so this component never encodes data itself.
+const renderedCodes = new Map<string, Promise<string>>();
+
+function renderCode(value: string, margin: number, light: string): Promise<string> {
+  const key = `${margin}|${light}|${value}`;
+  const existing = renderedCodes.get(key);
+  if (existing) return existing;
+
+  const code = import('qrcode').then(({ default: QRCode }) =>
+    QRCode.toString(value, { type: 'svg', margin, color: { dark: '#14100C', light } }),
+  );
+  code.catch(() => renderedCodes.delete(key));
+  renderedCodes.set(key, code);
+  return code;
+}
+
 export function QrCode({ value, label, size, margin = 4, light = '#F7F1E8' }: QrCodeProps) {
   const [markup, setMarkup] = useState('');
 
   useEffect(() => {
     let cancelled = false;
-    QRCode.toString(value, { type: 'svg', margin, color: { dark: '#14100C', light } })
+    renderCode(value, margin, light)
       .then((svg) => {
         if (!cancelled) setMarkup(svg);
       })
