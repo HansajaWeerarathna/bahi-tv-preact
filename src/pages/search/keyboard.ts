@@ -31,7 +31,7 @@ export const SEARCH_KEY_ROWS: readonly (readonly SearchKeyDef[])[] = [
   ],
 ];
 
-// Key width in pixels: a unit of 96 px less the 12 px gap, as in the original.
+// Key width in pixels: one unit is 96 px less the 12 px gap.
 export function keyWidthPx(units: number): number {
   return units * 96 - 12;
 }

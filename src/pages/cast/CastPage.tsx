@@ -3,7 +3,7 @@ import { t } from '@/shared/i18n';
 import { PageLayout, QrCode } from '@/shared/ui';
 
 export function CastPage() {
-  // Placeholder address, as in the original: replace with the hotel's real casting endpoint before launch.
+  // Placeholder address: replace with the hotel's casting endpoint before launch.
   const payload = `https://bahi-ajman.example/cast?room=${guest.value.roomNumber}`;
 
   return (

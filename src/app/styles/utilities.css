@@ -66,6 +66,15 @@
   }
 }
 
+@keyframes subtle-ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
 @keyframes search-cursor-blink {
   0%,
   50% {

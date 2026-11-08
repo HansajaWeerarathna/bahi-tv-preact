@@ -1,5 +1,11 @@
 import { useLocation } from 'preact-iso';
-import { highContrast, largerText, subtitles, use12Hour } from '@/entities/preferences';
+import {
+  backgroundMotion,
+  highContrast,
+  largerText,
+  subtitles,
+  use12Hour,
+} from '@/entities/preferences';
 import { ROUTES } from '@/shared/config';
 import { language, t } from '@/shared/i18n';
 import { useFocusable, useInitialFocus } from '@/shared/remote-navigation';
@@ -39,7 +45,6 @@ export function SettingsPage() {
   const { route } = useLocation();
   useInitialFocus('settings-contrast');
 
-  // Same order as the original settings screen
   const rows: SettingsRowProps[] = [
     {
       id: 'settings-contrast',
@@ -79,6 +84,14 @@ export function SettingsPage() {
       value: use12Hour.value ? t('settingsPage.hour12') : t('settingsPage.hour24'),
       onSelect: () => {
         use12Hour.value = !use12Hour.value;
+      },
+    },
+    {
+      id: 'settings-motion',
+      label: t('settingsPage.backgroundMotion'),
+      value: onOff(backgroundMotion.value),
+      onSelect: () => {
+        backgroundMotion.value = !backgroundMotion.value;
       },
     },
     {
