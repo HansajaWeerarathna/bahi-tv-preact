@@ -1,0 +1,1 @@
+export { FrontDeskPage } from './FrontDeskPage';
