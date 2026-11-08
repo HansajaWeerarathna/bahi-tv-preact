@@ -1,8 +1,8 @@
 # Bahi TV
 
-Bahi TV turns a Figma design into a remote-first hotel TV interface, using Preact and TypeScript. The brief covered the home page and its navigation. This prototype extends that foundation with connected guest-service flows, in English and Arabic.
+Bahi TV is a remote-first hotel TV interface built with Preact and TypeScript. Guests navigate services using directional controls, with focus restored when they return, English and Arabic layouts, and connected flows from selection through confirmation.
 
-Navigate with the arrow keys, Enter and Escape. Hotel data and service actions are simulated: no orders, bookings, alerts or room-control commands reach hotel systems.
+The project began with the brief: implement the Figma homepage and navigation. Additional guest-service screens extend that foundation to show how the same navigation, state and visual rules work across a larger interface.
 
 |                    |                                                                                               |
 | ------------------ | --------------------------------------------------------------------------------------------- |
@@ -10,25 +10,11 @@ Navigate with the arrow keys, Enter and Escape. Hotel data and service actions a
 | **With demo keys** | https://hansajaweerarathna.github.io/bahi-tv-preact/?demo                                     |
 | **Design**         | [Figma file](https://www.figma.com/design/gV7jxln7zVVz6DtArLNM81/Bahi-TV-Screens?node-id=0-1) |
 
-| Keyboard            | TV remote | Action                        |
-| ------------------- | --------- | ----------------------------- |
-| Arrow keys          | D-pad     | Move focus                    |
-| Enter               | OK        | Select                        |
-| Escape or Backspace | Back      | Go back                       |
-| H or Home           | Home      | Home screen                   |
-| M                   | Menu      | Settings                      |
-| + and -             | Volume    | Change the volume             |
-| 0 to 9              | Numbers   | Tune a channel on the TV page |
+![Moving between the header and tiles, opening a service and returning](docs/screenshots/flows/home-navigation.gif)
 
-The demo link adds keys for showing each state: **P** promotional offers, **N** a new message, **C** check-out day, **S** a list of eleven screen states, **D** the key legend.
+Try it with arrow keys, Enter and Escape.
 
-## Scope
-
-|               |                                                                                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **The brief** | The home page, matching the Figma design, and its remote navigation                                                |
-| **Extended**  | Room service, requests, alarms, search, TV, offers, room controls, settings, Arabic, high contrast and larger text |
-| **Simulated** | Guest details, messages, weather, orders, requests, alerts and room controls. Actions update local state only      |
+Interactive frontend prototype; hotel data and service actions are simulated.
 
 ## The home page
 
@@ -42,11 +28,24 @@ A two-minute walkthrough:
 4. Press Escape on Home. It shows a hint instead of leaving the app.
 5. With the demo link, press P for the promotional layout and N for a new message.
 
-When the hotel has offers to promote, they take over the background. The carousel advances on its own and pauses while the guest is on it.
+## Controls
 
-![Promotional offers on the home screen](docs/screenshots/flows/promotional-offers.gif)
+| Keyboard            | TV remote | Action                        |
+| ------------------- | --------- | ----------------------------- |
+| Arrow keys          | D-pad     | Move focus                    |
+| Enter               | OK        | Select                        |
+| Escape or Backspace | Back      | Go back                       |
+| H or Home           | Home      | Home screen                   |
+| M                   | Menu      | Settings                      |
+| + and -             | Volume    | Change the volume             |
+| 0 to 9              | Numbers   | Tune a channel on the TV page |
 
-![Promotional offer in Arabic, with the layout mirrored](docs/screenshots/states/arabic-promotion.jpg)
+<details>
+<summary><strong>Demo controls</strong></summary>
+
+The demo link adds keys for showing each state: **P** promotional offers, **N** a new message, **C** check-out day, **S** a list of eleven screen states, **D** the key legend.
+
+</details>
 
 ## Design translation
 
@@ -75,7 +74,7 @@ A static frame can't specify behaviour, so these were worked out in code:
 
 ### Home navigation
 
-![Moving between the header and tiles, opening a service and returning](docs/screenshots/flows/home-navigation.gif)
+Shown at the top of this page.
 
 **What it demonstrates:** the core of the brief. Focus moves between tile rows and the header without a hand-written route between them, and returning from a service restores the item the guest opened.
 
@@ -90,6 +89,14 @@ A static frame can't specify behaviour, so these were worked out in code:
 ![Choosing a dish, reviewing the order and confirming it](docs/screenshots/flows/order-food.gif)
 
 **What it demonstrates:** multi-step state beyond a single screen. The quantity carries into the basket, the basket into the review, and confirmation clears it and adds a message. The confirmation is simulated.
+
+## Promotional layout
+
+When the hotel has offers to promote, they take over the background. The carousel advances on its own and pauses while the guest is on it.
+
+![Promotional offers on the home screen](docs/screenshots/flows/promotional-offers.gif)
+
+![Promotional offer in Arabic, with the layout mirrored](docs/screenshots/states/arabic-promotion.jpg)
 
 ## Engineering decisions
 
@@ -135,10 +142,18 @@ A static frame can't specify behaviour, so these were worked out in code:
 - **Decision:** signals hold state in memory, and nothing is written to browser storage.
 - **Trade-off:** a reload resets everything. Persistence belongs with a real hotel integration.
 
+## Scope
+
+|               |                                                                                                                    |
+| ------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **The brief** | The home page, matching the Figma design, and its remote navigation                                                |
+| **Extended**  | Room service, requests, alarms, search, TV, offers, room controls, settings, Arabic, high contrast and larger text |
+| **Simulated** | Guest details, messages, weather, orders, requests, alerts and room controls. Actions update local state only      |
+
 ## TV-oriented interaction design
 
 - **Preact Signals** update only what reads a value. Each minute the clock changes its own text directly, and only the greeting and notice re-render.
-- **Held arrow keys** are limited to one move every 120 ms, so repeated presses can't queue up behind the remote.
+- **Repeated arrow events are throttled to reduce excessive focus movement.** Focus moves at most once every 120 ms.
 - **Tiles don't animate their focus ring.** Moving focus only transitions transform and colours, because animating `box-shadow` is expensive.
 - **Home screen text is 24px or larger**, for reading from a distance.
 
@@ -171,7 +186,7 @@ npm run build
 
 ## Architecture
 
-Feature-Sliced Design. Each layer imports only from the layers below it.
+The code is organised by responsibility, following Feature-Sliced Design: app, pages, widgets, features, entities and shared, each with its own job.
 
 ```
 src/
