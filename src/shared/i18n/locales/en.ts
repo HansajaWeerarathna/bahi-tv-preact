@@ -69,6 +69,17 @@ export const en = {
     freeNote: 'Free for hotel guests.',
     chargeNote: 'The charge goes to your room.',
   },
+  wifiPage: {
+    title: 'Wi-Fi',
+    network: 'Network',
+    password: 'Password',
+    scanHint: 'Scan with your phone camera to connect',
+  },
+  castPage: {
+    title: 'Cast to this TV',
+    stepOne: 'On your other device, scan this QR code to get started.',
+    stepTwo: 'Then cast your phone or tablet to this TV.',
+  },
   roomService: {
     title: 'Room service',
     subtitle: 'Food, requests, restaurants and amenities',

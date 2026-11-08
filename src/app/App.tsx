@@ -12,6 +12,8 @@ import { MessagesPage } from '@/pages/messages';
 import { CheckOutPage } from '@/pages/check-out';
 import { TvPage } from '@/pages/tv';
 import { OfferPage, ThingsToDoPage } from '@/pages/things-to-do';
+import { CastPage } from '@/pages/cast';
+import { WifiPage } from '@/pages/wifi';
 import {
   MenuItemPage,
   OrderDonePage,
@@ -41,6 +43,8 @@ export function App() {
           <Route path={ROUTES.tv} component={TvPage} />
           <Route path={ROUTES.thingsToDo} component={ThingsToDoPage} />
           <Route path={ROUTES.offer} component={OfferPage} />
+          <Route path={ROUTES.wifi} component={WifiPage} />
+          <Route path={ROUTES.cast} component={CastPage} />
           <Route path={ROUTES.roomService} component={RoomServicePage} />
           <Route path={ROUTES.roomServiceItem} component={MenuItemPage} />
           <Route path={ROUTES.roomServiceRequest} component={RequestPage} />
