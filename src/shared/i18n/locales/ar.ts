@@ -61,6 +61,16 @@ export const ar: Dictionary = {
     title: 'أنشطة وتجارب',
     subtitle: 'اختر نشاطاً لعرض التفاصيل والحجز.',
   },
+  offerPage: {
+    when: 'الموعد',
+    where: 'المكان',
+    howLong: 'المدة',
+    price: 'السعر',
+    included: 'يشمل',
+    scanToBook: 'امسح الرمز للحجز',
+    freeNote: 'مجاني لنزلاء الفندق.',
+    chargeNote: 'تُحمَّل التكلفة على غرفتك.',
+  },
   roomService: {
     title: 'خدمة الغرف',
     subtitle: 'الطعام والطلبات والمطاعم والمرافق',

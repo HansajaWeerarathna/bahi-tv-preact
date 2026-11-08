@@ -59,6 +59,16 @@ export const en = {
     title: 'Things to do',
     subtitle: 'Choose one to see details and book.',
   },
+  offerPage: {
+    when: 'When',
+    where: 'Where',
+    howLong: 'How long',
+    price: 'Price',
+    included: 'Included',
+    scanToBook: 'Scan to book',
+    freeNote: 'Free for hotel guests.',
+    chargeNote: 'The charge goes to your room.',
+  },
   roomService: {
     title: 'Room service',
     subtitle: 'Food, requests, restaurants and amenities',

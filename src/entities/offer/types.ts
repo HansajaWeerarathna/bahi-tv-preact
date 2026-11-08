@@ -1,4 +1,4 @@
-import type { Localized } from '@/shared/i18n';
+import type { Language, Localized } from '@/shared/i18n';
 
 export type Offer = {
   id: string;
@@ -9,6 +9,8 @@ export type Offer = {
   timing: Localized;
   location: Localized;
   price: Localized;
+  duration: Localized;
+  includes: Record<Language, string[]>;
   image: string;
   photoCredit?: string;
 };
