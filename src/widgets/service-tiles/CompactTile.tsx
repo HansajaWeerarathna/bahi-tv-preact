@@ -29,7 +29,9 @@ export function CompactTile({ tile }: CompactTileProps) {
         <tile.Icon size={32} />
         {tile.showsUnread && <UnreadBadge />}
       </span>
-      <span class="text-label font-semibold whitespace-nowrap">{t(tile.labelKey)}</span>
+      <span class="text-label font-semibold whitespace-nowrap in-data-[text-size=large]:whitespace-normal">
+        {t(tile.labelKey)}
+      </span>
     </button>
   );
 }
