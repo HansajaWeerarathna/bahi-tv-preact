@@ -6,6 +6,7 @@ import { RemoteControl } from '@/shared/remote-navigation';
 import { Toast } from '@/shared/ui';
 import { HomePage } from '@/pages/home';
 import { PlaceholderPage } from '@/pages/placeholder';
+import { DemoKeys, isDemoMode } from '@/features/demo-tools';
 import { TvCanvas } from './TvCanvas';
 import { useDocumentPreferences } from './useDocumentPreferences';
 
@@ -22,6 +23,7 @@ export function App() {
           <Route default component={PlaceholderPage} />
         </Router>
         <Toast />
+        {isDemoMode && <DemoKeys />}
       </TvCanvas>
     </LocationProvider>
   );
