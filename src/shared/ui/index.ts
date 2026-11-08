@@ -6,3 +6,4 @@ export { FeedbackBanner } from './FeedbackBanner';
 export { Toast, showToast } from './toast';
 export { QuantityControl } from './QuantityControl';
 export { QrCode } from './QrCode';
+export { Switch } from './Switch';
