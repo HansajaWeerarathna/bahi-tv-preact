@@ -36,8 +36,10 @@ function NoticeButton({ notice }: NoticeButtonProps) {
       {...focusProps}
       class="tv-focus flex h-[72px] w-full items-center justify-between gap-8 tile-surface px-8 text-start"
     >
-      <span class="text-body font-medium">{getNoticeText(notice)}</span>
-      <span class="text-label font-semibold text-cream-muted">{t('notice.action')}</span>
+      <span class="text-body leading-[normal] font-medium">{getNoticeText(notice)}</span>
+      <span class="text-label leading-[normal] font-semibold text-cream-muted">
+        {t('notice.action')}
+      </span>
     </button>
   );
 }
@@ -50,7 +52,7 @@ export function NoticeStrip() {
   });
   if (!notice) return null;
   return (
-    <div class="mt-auto mb-6">
+    <div class="mb-6">
       <NoticeButton notice={notice} />
     </div>
   );

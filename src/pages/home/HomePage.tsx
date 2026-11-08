@@ -17,8 +17,8 @@ export function HomePage() {
       <main class="relative flex h-full flex-col px-24 py-[54px]">
         <HomeHeader />
         <GreetingBand />
-        <NoticeStrip />
         <div class="mt-auto flex flex-col">
+          <NoticeStrip />
           <OfferSpotlight />
           <ServiceTiles />
         </div>
