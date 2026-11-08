@@ -1,0 +1,1 @@
+export { OfferSpotlight } from './OfferSpotlight';
