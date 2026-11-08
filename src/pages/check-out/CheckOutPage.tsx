@@ -29,7 +29,7 @@ export function CheckOutPage() {
           {t('checkOut.body', { checkOutTime, lateCheckOutTime })}
         </p>
         {isLateRequested && (
-          <p class="mt-6 text-base leading-[normal]">{t('checkOut.done', { lateCheckOutTime })}</p>
+          <p class="mt-6 text-body leading-[normal]">{t('checkOut.done', { lateCheckOutTime })}</p>
         )}
         <div class="mt-8 flex gap-6">
           <ActionButton
