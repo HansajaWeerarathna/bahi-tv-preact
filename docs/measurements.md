@@ -13,13 +13,13 @@ Measured on app code at commit `01f8ac4`, with the production build served by `n
 
 ## Results
 
-| Measure                         | Result                 | Samples                                          |
-| ------------------------------- | ---------------------- | ------------------------------------------------ |
-| JavaScript at start-up, gzipped | 35.43 KB               | 6 files with CSS, as listed by `dist/index.html` |
-| CSS at start-up, gzipped        | 7.16 KB                | Same run                                         |
-| Focus move, median              | 35 ms                  | 60 moves across the top tile row                 |
-| Focus move, slowest 5%          | 54 ms                  | Same 60 moves                                    |
-| Random remote key presses       | 2600 presses, 0 errors | One run                                          |
+| Measure                         | Result                                                       | Samples                                          |
+| ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------ |
+| JavaScript at start-up, gzipped | 35.43 KB                                                     | 6 files with CSS, as listed by `dist/index.html` |
+| CSS at start-up, gzipped        | 7.16 KB                                                      | Same run                                         |
+| Focus move, median              | 35 ms                                                        | 60 moves across the top tile row                 |
+| Focus move, slowest 5%          | 54 ms                                                        | Same 60 moves                                    |
+| Random remote key presses       | 2,600 random key presses; no page or console errors recorded | One run                                          |
 
 ## How to repeat this
 

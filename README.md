@@ -12,6 +12,8 @@ The project began with the brief: implement the Figma homepage and navigation. A
 
 ![Moving between the header and tiles, opening a service and returning](docs/screenshots/flows/home-navigation.gif)
 
+**What it demonstrates:** the core of the brief. Focus moves between tile rows and the header without a hand-written route between them, and returning from a service restores the item the guest opened.
+
 Try it with arrow keys, Enter and Escape.
 
 Interactive frontend prototype; hotel data and service actions are simulated.
@@ -27,25 +29,6 @@ A two-minute walkthrough:
 3. Press Enter on a tile, then Escape. Focus comes back to the tile you opened.
 4. Press Escape on Home. It shows a hint instead of leaving the app.
 5. With the demo link, press P for the promotional layout and N for a new message.
-
-## Controls
-
-| Keyboard            | TV remote | Action                        |
-| ------------------- | --------- | ----------------------------- |
-| Arrow keys          | D-pad     | Move focus                    |
-| Enter               | OK        | Select                        |
-| Escape or Backspace | Back      | Go back                       |
-| H or Home           | Home      | Home screen                   |
-| M                   | Menu      | Settings                      |
-| + and -             | Volume    | Change the volume             |
-| 0 to 9              | Numbers   | Tune a channel on the TV page |
-
-<details>
-<summary><strong>Demo controls</strong></summary>
-
-The demo link adds keys for showing each state: **P** promotional offers, **N** a new message, **C** check-out day, **S** a list of eleven screen states, **D** the key legend.
-
-</details>
 
 ## Design translation
 
@@ -70,13 +53,7 @@ A static frame can't specify behaviour, so these were worked out in code:
 - High contrast and larger text, including labels that need to wrap
 - Missing weather, and the screen shown between guests
 
-## Three representative flows
-
-### Home navigation
-
-Shown at the top of this page.
-
-**What it demonstrates:** the core of the brief. Focus moves between tile rows and the header without a hand-written route between them, and returning from a service restores the item the guest opened.
+## Extended user flows
 
 ### Arabic and right-to-left
 
@@ -89,14 +66,6 @@ Shown at the top of this page.
 ![Choosing a dish, reviewing the order and confirming it](docs/screenshots/flows/order-food.gif)
 
 **What it demonstrates:** multi-step state beyond a single screen. The quantity carries into the basket, the basket into the review, and confirmation clears it and adds a message. The confirmation is simulated.
-
-## Promotional layout
-
-When the hotel has offers to promote, they take over the background. The carousel advances on its own and pauses while the guest is on it.
-
-![Promotional offers on the home screen](docs/screenshots/flows/promotional-offers.gif)
-
-![Promotional offer in Arabic, with the layout mirrored](docs/screenshots/states/arabic-promotion.jpg)
 
 ## Engineering decisions
 
@@ -159,13 +128,13 @@ When the hotel has offers to promote, they take over the background. The carouse
 
 ## Verification
 
-| Evidence                      | Result                 |
-| ----------------------------- | ---------------------- |
-| Unit tests                    | 75 passing             |
-| JavaScript at start-up        | 35.43 KB gzipped       |
-| CSS at start-up               | 7.16 KB gzipped        |
-| Focus move at 6× CPU slowdown | 35 ms median           |
-| Random remote key presses     | 2600 presses, 0 errors |
+| Evidence                      | Result                                                       |
+| ----------------------------- | ------------------------------------------------------------ |
+| Unit tests                    | 75 passing                                                   |
+| JavaScript at start-up        | 35.43 KB gzipped                                             |
+| CSS at start-up               | 7.16 KB gzipped                                              |
+| Focus move at 6× CPU slowdown | 35 ms median                                                 |
+| Random remote key presses     | 2,600 random key presses; no page or console errors recorded |
 
 Environment, commands and method are in [docs/measurements.md](docs/measurements.md). A slowed desktop browser isn't a physical TV, so these are comparison figures only.
 
@@ -184,6 +153,25 @@ npm test
 npm run build
 ```
 
+## Controls
+
+| Keyboard            | TV remote | Action                        |
+| ------------------- | --------- | ----------------------------- |
+| Arrow keys          | D-pad     | Move focus                    |
+| Enter               | OK        | Select                        |
+| Escape or Backspace | Back      | Go back                       |
+| H or Home           | Home      | Home screen                   |
+| M                   | Menu      | Settings                      |
+| + and -             | Volume    | Change the volume             |
+| 0 to 9              | Numbers   | Tune a channel on the TV page |
+
+<details>
+<summary><strong>Demo controls</strong></summary>
+
+The demo link adds keys for showing each state: **P** promotional offers, **N** a new message, **C** check-out day, **S** a list of eleven screen states, **D** the key legend.
+
+</details>
+
 ## Architecture
 
 The code is organised by responsibility, following Feature-Sliced Design: app, pages, widgets, features, entities and shared, each with its own job.
@@ -198,10 +186,10 @@ src/
   shared/     UI parts, remote navigation, i18n, time helpers
 ```
 
-Run it locally:
+Run it locally with Node 22.12 or newer, or 20.19 or newer, which Vite requires. CI uses Node 22. Install from the committed lockfile:
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -210,11 +198,22 @@ To change the brand colour, edit `--color-gold` in `src/app/styles/theme.css`. T
 ## Limitations
 
 - It has run in desktop Chrome only. Tizen and webOS send their own codes for some remote buttons, and those aren't mapped yet.
-- It needs Chromium 111 or newer, which Tailwind CSS v4 requires.
+- The build uses `color-mix()`, which needs Chromium 111 or newer, and `@property`, which needs recent Safari and Firefox releases. Only desktop Chrome has been tested.
 - It needs a server that returns `index.html` for any path. A packaged TV app running from `file://` would need hash or in-memory routing.
 - All hotel data and actions are simulated.
 
 ## More flows
+
+<details>
+<summary><strong>Promotional offers</strong>: the carousel advances on its own, with the Arabic layout</summary>
+
+When the hotel has offers to promote, they take over the background. The carousel advances on its own and pauses while the guest is on it.
+
+![Promotional offers on the home screen](docs/screenshots/flows/promotional-offers.gif)
+
+![Promotional offer in Arabic, with the layout mirrored](docs/screenshots/states/arabic-promotion.jpg)
+
+</details>
 
 <details open>
 <summary><strong>Request housekeeping</strong></summary>
