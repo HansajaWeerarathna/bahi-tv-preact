@@ -51,6 +51,10 @@ When the hotel has offers to promote, they take over the home screen background.
 
 ![Promotional offers on the home screen](docs/screenshots/flows/promotional-offers.gif)
 
+The same screen in Arabic. The layout mirrors, and the offer text sits on the left.
+
+![Promotional offer in Arabic, with the layout mirrored](docs/screenshots/states/arabic-promotion.jpg)
+
 <details>
 <summary><strong>Order food</strong>: choose a dish and quantity, review, place the order</summary>
 
