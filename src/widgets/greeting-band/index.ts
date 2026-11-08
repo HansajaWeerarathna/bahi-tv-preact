@@ -1,0 +1,1 @@
+export { GreetingBand } from './GreetingBand';
