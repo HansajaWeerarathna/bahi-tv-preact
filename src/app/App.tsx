@@ -6,6 +6,8 @@ import { RemoteControl } from '@/shared/remote-navigation';
 import { Toast } from '@/shared/ui';
 import { HomePage } from '@/pages/home';
 import { PlaceholderPage } from '@/pages/placeholder';
+import { EmergencyPage } from '@/pages/emergency';
+import { FrontDeskPage } from '@/pages/front-desk';
 import { DemoKeys, isDemoMode } from '@/features/demo-tools';
 import { TvCanvas } from './TvCanvas';
 import { useDocumentPreferences } from './useDocumentPreferences';
@@ -20,6 +22,8 @@ export function App() {
       <TvCanvas>
         <Router>
           <Route path={ROUTES.home} component={HomePage} />
+          <Route path={ROUTES.frontDesk} component={FrontDeskPage} />
+          <Route path={ROUTES.emergency} component={EmergencyPage} />
           <Route default component={PlaceholderPage} />
         </Router>
         <Toast />

@@ -57,6 +57,26 @@ export const ar: Dictionary = {
   offer: {
     seeDetails: 'عرض التفاصيل',
   },
+  frontDesk: {
+    title: 'الاستقبال',
+    body: 'اضغط 9 على هاتف الغرفة، أو اطلب منا أن نتصل بك.',
+    callMe: 'اتصلوا بي',
+    callConfirmed: 'سيتصل بك الاستقبال في غرفة {number} خلال دقيقة.',
+    emergency: 'الطوارئ',
+  },
+  emergency: {
+    title: 'الطوارئ',
+    body: 'في حالات الطوارئ الطبية أو الحريق أو السلامة، اطلب {extension} من هاتف الغرفة، أو أرسل تنبيهاً إلى موظفي الفندق أدناه.',
+    hotel: 'طوارئ الفندق',
+    hotelValue: 'تحويلة {extension}',
+    desk: 'الاستقبال',
+    deskValue: 'تحويلة {extension}',
+    uae: 'خدمات الطوارئ في الإمارات',
+    uaeValue: 'الشرطة 999، الإسعاف 998، الإطفاء 997',
+    sendStaff: 'أرسل موظفاً إلى الغرفة {number}',
+    alertSent: 'تم إرسال التنبيه. يتجه فريق الأمن والإسعاف إلى الغرفة {number}.',
+    cancel: 'إلغاء',
+  },
   hints: {
     navigate: 'تنقل',
     select: 'موافق للاختيار',

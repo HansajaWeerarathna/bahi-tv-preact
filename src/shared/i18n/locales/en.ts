@@ -55,6 +55,26 @@ export const en = {
   offer: {
     seeDetails: 'See details',
   },
+  frontDesk: {
+    title: 'Front desk',
+    body: 'Press 9 on the bedside phone, or ask us to call you back.',
+    callMe: 'Call me back',
+    callConfirmed: 'The front desk will call Room {number} within a minute.',
+    emergency: 'Emergency',
+  },
+  emergency: {
+    title: 'Emergency',
+    body: 'For a medical, fire or safety emergency, dial {extension} on the bedside phone, or send an alert to hotel staff below.',
+    hotel: 'Hotel emergency',
+    hotelValue: 'Ext. {extension}',
+    desk: 'Front desk',
+    deskValue: 'Ext. {extension}',
+    uae: 'UAE emergency services',
+    uaeValue: 'Police 999, ambulance 998, fire 997',
+    sendStaff: 'Send staff to Room {number}',
+    alertSent: 'Alert sent. Security and medical staff are on their way to Room {number}.',
+    cancel: 'Cancel',
+  },
   hints: {
     navigate: 'Navigate',
     select: 'OK Select',
