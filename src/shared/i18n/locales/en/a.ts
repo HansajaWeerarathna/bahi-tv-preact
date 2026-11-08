@@ -28,6 +28,9 @@ export const enA = {
     ms: 'Ms.',
     dr: 'Dr.',
   },
+  home: {
+    exitHint: 'Press Home to exit',
+  },
   notice: {
     oneMessage: '1 new message from {sender}',
     manyMessages: '{count} new messages waiting for you',

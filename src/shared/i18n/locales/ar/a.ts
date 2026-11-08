@@ -30,6 +30,9 @@ export const arA = {
     ms: 'السيدة',
     dr: 'الدكتور',
   },
+  home: {
+    exitHint: 'اضغط على زر الرئيسية للخروج',
+  },
   notice: {
     oneMessage: 'رسالة جديدة من {sender}',
     manyMessages: 'لديك {count} رسائل جديدة',

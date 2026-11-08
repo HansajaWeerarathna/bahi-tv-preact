@@ -18,10 +18,20 @@ const lastFocusedByGroup = new Map<string, string>();
 // The last content item focused (not a returnToLast item): where header and notice return to.
 let lastContentId: string | null = null;
 
+function recoverFocus(removedId: string): void {
+  if (focusedId.value !== removedId || entries.has(removedId)) return;
+  if (lastContentId !== null && setFocus(lastContentId)) return;
+  const [firstId] = entries.keys();
+  if (firstId === undefined || !setFocus(firstId)) focusedId.value = null;
+}
+
 export function registerFocusable(id: string, entry: FocusEntry): () => void {
   entries.set(id, entry);
   return () => {
-    if (entries.get(id) === entry) entries.delete(id);
+    if (entries.get(id) !== entry) return;
+    entries.delete(id);
+    // Wait for the render to finish: a new page may already have set its own focus.
+    queueMicrotask(() => recoverFocus(id));
   };
 }
 

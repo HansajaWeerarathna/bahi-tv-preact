@@ -22,7 +22,7 @@ export function PrimaryTile({ tile }: PrimaryTileProps) {
     <button
       type="button"
       {...focusProps}
-      class="tv-focus flex h-[188px] flex-col items-start justify-between tile-surface px-7 py-6 text-start data-[focused]:scale-[1.04]"
+      class="tv-focus flex h-[188px] min-w-0 flex-1 flex-col items-start justify-between tile-surface px-7 py-6 text-start data-[focused]:scale-[1.04]"
     >
       <tile.Icon size={48} />
       <span class="flex flex-col gap-1">

@@ -114,4 +114,9 @@ describe('findNextFocus on the home layout', () => {
   it('returns null when nothing lies in that direction', () => {
     expect(moveFrom('frontDesk', 'left', layoutWithoutNotice)).toBeNull();
   });
+
+  it('skips a tile that is switched off', () => {
+    const layout = layoutWithoutNotice.filter((candidate) => candidate.id !== 'tv');
+    expect(moveFrom('frontDesk', 'right', layout)).toBe('roomService');
+  });
 });

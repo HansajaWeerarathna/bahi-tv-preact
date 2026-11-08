@@ -4,6 +4,8 @@ The in-room TV home screen for Bahi Ajman Palace Hotel. A guest uses a TV remote
 
 The screen is a fixed 1920×1080 canvas, scaled to fit any window.
 
+**Live demo:** https://hansajaweerarathna.github.io/bahi-tv-preact/?demo
+
 ![Home screen in English](docs/screenshots/home-en.png)
 
 ![Home screen in Arabic](docs/screenshots/home-ar.png)
@@ -27,16 +29,16 @@ npm run preview   # serve dist/ locally
 
 ## Remote keys
 
-| Key                 | Action                        |
-| ------------------- | ----------------------------- |
-| Arrow keys          | Move focus                    |
-| Enter               | OK: select                    |
-| Escape or Backspace | Back                          |
-| H or Home           | Home screen                   |
-| M                   | Settings                      |
-| + or =              | Volume up by 5                |
-| - or _              | Volume down by 5              |
-| 0 to 9              | Tune a channel on the TV page |
+| Keyboard            | TV remote button | Action                        |
+| ------------------- | ---------------- | ----------------------------- |
+| Arrow keys          | D-pad            | Move focus                    |
+| Enter               | OK               | Select                        |
+| Escape or Backspace | Back             | Back                          |
+| H or Home           | Home             | Home screen                   |
+| M                   | Menu             | Settings                      |
+| + or =              | Volume up        | Volume up by 5                |
+| - or \_             | Volume down      | Volume down by 5              |
+| 0 to 9              | Number keys      | Tune a channel on the TV page |
 
 Add `?demo` to the address to show the demo keys:
 
@@ -76,6 +78,46 @@ src/
 - **Hotel time** (Asia/Dubai) drives the clock and the greeting, not the TV's own clock.
 - **Only the home screen loads at start-up.** Other pages load the first time they are opened.
 - **Alarms and guest details are kept in memory only.** Nothing is saved to the browser, as in the original.
+
+## Why Preact
+
+A hotel TV has a slow processor and little memory. Preact gives the same component model as React with a much smaller runtime. Signals update only what reads a value: each minute the clock changes its own text directly, and only the greeting and notice re-render.
+
+## Bundle size
+
+Measured with `npm run build`, gzipped:
+
+| What loads at start-up | Size     |
+| ---------------------- | -------- |
+| JavaScript             | 35.32 KB |
+| CSS                    | 7.10 KB  |
+
+Measured by gzipping every file that `dist/index.html` loads, with Node's built-in zlib (default level). Every other page, and the QR library, loads the first time it is needed.
+
+## Change it
+
+- **Brand colour:** `--color-gold` in `src/app/styles/theme.css`.
+- **Hotel name:** `hotel.name` and `hotel.footerName` in `src/shared/i18n/locales/en/a.ts` and `ar/a.ts`.
+- **Switch a tile off:** set `enabled: false` in `src/widgets/service-tiles/tiles.ts`. The layout and remote navigation adjust on their own.
+
+## Assumptions
+
+- Guest, message, weather and offer details are sample data. There is no hotel system behind them.
+- A keyboard stands in for the remote in this demo.
+- The app is served from a web server that returns `index.html` for any path. A packaged Tizen or webOS app runs from `file://` and would need hash or in-memory routing.
+- The target is Chromium 111 or newer, which Tailwind CSS v4 requires. Older built-in TV browsers are not supported.
+
+## Not tested yet
+
+- A physical TV and remote. Tizen and webOS send their own key codes for some buttons, and those still need mapping.
+- Arabic rendering in a real TV browser. It has been checked in desktop Chrome only.
+- Performance on TV hardware.
+
+## With more time
+
+- Connect guest, messages and weather to the hotel's systems.
+- Test on the hotel's TV models and map their remote keys.
+- Replace the sample photography with the hotel's own.
 
 ## Credits
 

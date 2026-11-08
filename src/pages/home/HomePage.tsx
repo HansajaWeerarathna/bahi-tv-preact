@@ -3,13 +3,19 @@ import { HomeHeader } from '@/widgets/home-header';
 import { GreetingBand } from '@/widgets/greeting-band';
 import { NoticeStrip } from '@/widgets/notice-strip';
 import { OfferSpotlight } from '@/widgets/offer-spotlight';
-import { ServiceTiles } from '@/widgets/service-tiles';
+import { FIRST_TILE_FOCUS_ID, ServiceTiles } from '@/widgets/service-tiles';
 import { t } from '@/shared/i18n';
-import { lastSelectedId, useInitialFocus } from '@/shared/remote-navigation';
-import { RemoteHints } from '@/shared/ui';
+import { lastSelectedId, useInitialFocus, useRemoteKeyHandler } from '@/shared/remote-navigation';
+import { RemoteHints, showToast } from '@/shared/ui';
 
 export function HomePage() {
-  useInitialFocus(lastSelectedId.value, 'tile-frontDesk');
+  useInitialFocus(lastSelectedId.value, FIRST_TILE_FOCUS_ID);
+
+  useRemoteKeyHandler((action) => {
+    if (action !== 'back') return false;
+    showToast(t('home.exitHint'));
+    return true;
+  });
 
   return (
     <>
