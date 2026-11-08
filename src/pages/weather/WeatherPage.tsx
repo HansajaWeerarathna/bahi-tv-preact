@@ -6,7 +6,7 @@ import type { TranslationKey } from '@/shared/i18n';
 import { CloudIcon, PageLayout, PartlyCloudyIcon, RainIcon, SunIcon } from '@/shared/ui';
 import { buildForecast } from './lib/forecast';
 
-// Inline, as in the original: the icon sits in a block box with a line-box gap under it.
+// Inline, so the line box leaves the same gap under the icon as before.
 const ICON_CLASS = 'inline align-baseline text-cream [&_*]:[vector-effect:non-scaling-stroke]';
 
 const CONDITION_KEYS: Record<WeatherCondition, TranslationKey> = {

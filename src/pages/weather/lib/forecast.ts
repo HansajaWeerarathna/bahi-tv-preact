@@ -15,7 +15,7 @@ type Reading = {
   low: number;
 };
 
-// Sample days after today, as in the original. Replace with a real forecast before launch.
+// Sample days after today. Replace with a real forecast before launch.
 const SAMPLE_NEXT_DAYS: Reading[] = [
   { condition: 'clear', high: 27, low: 20 },
   { condition: 'cloudy', high: 25, low: 19 },

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import type { Channel } from '@/entities/channel';
+import { subtitles } from '@/entities/preferences';
 import { pickText, t } from '@/shared/i18n';
 import type { ProgramSlot } from './lib/tv-time';
 import { formatTvHour } from './lib/tv-time';
@@ -26,7 +27,7 @@ export function TvBanner({ channel, slot, isVisible, use12Hour }: TvBannerProps)
           {channel.number}
         </span>
         <span class="text-title leading-[normal] font-semibold">{channel.name}</span>
-        {!channel.isApp && (
+        {!channel.isApp && subtitles.value && (
           <span class="rounded-sm border border-line-strong px-2.5 py-0.5 text-caption leading-[normal] text-cream-muted">
             {t('tv.subtitles')}
           </span>

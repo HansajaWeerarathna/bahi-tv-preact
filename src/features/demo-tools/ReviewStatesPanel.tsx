@@ -13,18 +13,21 @@ export function ReviewStatesPanel() {
   const [highlighted, setHighlighted] = useState(0);
   const { route } = useLocation();
 
-  useRemoteKeyHandler((action) => {
-    if (action === 'up') setHighlighted((index) => clamp(index - 1, 0, LAST_STATE_INDEX));
-    if (action === 'down') setHighlighted((index) => clamp(index + 1, 0, LAST_STATE_INDEX));
-    if (action === 'select') {
-      const state = REVIEW_STATES[highlighted];
-      if (state) applyReviewState(state);
-      reviewStatesOpen.value = false;
-      route(ROUTES.home);
-    }
-    if (action === 'back') reviewStatesOpen.value = false;
-    return true;
-  });
+  useRemoteKeyHandler(
+    (action) => {
+      if (action === 'up') setHighlighted((index) => clamp(index - 1, 0, LAST_STATE_INDEX));
+      if (action === 'down') setHighlighted((index) => clamp(index + 1, 0, LAST_STATE_INDEX));
+      if (action === 'select') {
+        const state = REVIEW_STATES[highlighted];
+        if (state) applyReviewState(state);
+        reviewStatesOpen.value = false;
+        route(ROUTES.home);
+      }
+      if (action === 'back') reviewStatesOpen.value = false;
+      return true;
+    },
+    { always: true },
+  );
 
   return (
     <div class="absolute start-24 top-[54px] z-50 w-[720px] rounded-md border-2 border-gold bg-surface-1 px-7 py-6">

@@ -7,7 +7,6 @@ export function countNights(checkInDate: string, checkOutDate: string): number {
   return Math.max(0, Math.round((end - start) / DAY_MS));
 }
 
-// Dates are shown as "1 Nov 2026", as in the original.
 export function formatStayDate(isoDate: string): string {
   return new Date(`${isoDate}T00:00:00`).toLocaleDateString('en-GB', {
     day: 'numeric',

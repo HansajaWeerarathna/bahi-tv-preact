@@ -35,7 +35,7 @@ function repeatLabels(): RepeatLabels {
   };
 }
 
-// Focus ring around a single alarm control, as in the original.
+// Focus ring around a single alarm control.
 const FOCUS_RING =
   'border-transparent data-[focused]:border-gold data-[focused]:shadow-[0_0_0_2px_var(--color-gold)] data-[focused]:scale-[1.02] transition duration-150';
 

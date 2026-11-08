@@ -1,6 +1,7 @@
 import { signal } from '@preact/signals';
 import { hotelTime, simulatedTime } from '@/entities/clock';
 import { DEFAULT_GUEST, guest } from '@/entities/guest';
+import { systemState } from '@/entities/session';
 import { DEFAULT_MESSAGES, messages, type Message } from '@/entities/message';
 import { offerLayout, spotlightIndex, toggleOfferLayout } from '@/entities/offer';
 import { highContrast, largerText, use12Hour } from '@/entities/preferences';
@@ -95,4 +96,5 @@ export function resetDemoState(): void {
   spotlightIndex.value = 0;
   checkOutDayOn.value = false;
   timeBeforeCheckOut = null;
+  systemState.value = 'ready';
 }
