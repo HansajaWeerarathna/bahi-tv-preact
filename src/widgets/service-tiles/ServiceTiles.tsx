@@ -4,7 +4,7 @@ import { COMPACT_TILES, PRIMARY_TILES } from './tiles';
 
 export function ServiceTiles() {
   return (
-    <div class="mt-auto flex flex-col gap-4">
+    <div class="flex flex-col gap-4">
       <div class="grid grid-cols-4 gap-6">
         {PRIMARY_TILES.map((tile) => (
           <PrimaryTile key={tile.id} tile={tile} />

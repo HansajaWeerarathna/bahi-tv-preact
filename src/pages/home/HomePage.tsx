@@ -18,8 +18,10 @@ export function HomePage() {
         <HomeHeader />
         <GreetingBand />
         <NoticeStrip />
-        <OfferSpotlight />
-        <ServiceTiles />
+        <div class="mt-auto flex flex-col">
+          <OfferSpotlight />
+          <ServiceTiles />
+        </div>
         <RemoteHints class="mt-8 pt-1" endText={t('hotel.footerName')} />
       </main>
     </>
