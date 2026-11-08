@@ -55,6 +55,10 @@ export const en = {
   offer: {
     seeDetails: 'See details',
   },
+  thingsToDoPage: {
+    title: 'Things to do',
+    subtitle: 'Choose one to see details and book.',
+  },
   roomService: {
     title: 'Room service',
     subtitle: 'Food, requests, restaurants and amenities',

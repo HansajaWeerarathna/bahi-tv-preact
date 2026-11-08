@@ -57,6 +57,10 @@ export const ar: Dictionary = {
   offer: {
     seeDetails: 'عرض التفاصيل',
   },
+  thingsToDoPage: {
+    title: 'أنشطة وتجارب',
+    subtitle: 'اختر نشاطاً لعرض التفاصيل والحجز.',
+  },
   roomService: {
     title: 'خدمة الغرف',
     subtitle: 'الطعام والطلبات والمطاعم والمرافق',
