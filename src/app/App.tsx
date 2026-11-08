@@ -13,6 +13,8 @@ import { CheckOutPage } from '@/pages/check-out';
 import { TvPage } from '@/pages/tv';
 import { OfferPage, ThingsToDoPage } from '@/pages/things-to-do';
 import { CastPage } from '@/pages/cast';
+import { StayPage } from '@/pages/stay';
+import { WeatherPage } from '@/pages/weather';
 import { WifiPage } from '@/pages/wifi';
 import {
   MenuItemPage,
@@ -45,6 +47,8 @@ export function App() {
           <Route path={ROUTES.offer} component={OfferPage} />
           <Route path={ROUTES.wifi} component={WifiPage} />
           <Route path={ROUTES.cast} component={CastPage} />
+          <Route path={ROUTES.stay} component={StayPage} />
+          <Route path={ROUTES.weather} component={WeatherPage} />
           <Route path={ROUTES.roomService} component={RoomServicePage} />
           <Route path={ROUTES.roomServiceItem} component={MenuItemPage} />
           <Route path={ROUTES.roomServiceRequest} component={RequestPage} />
