@@ -14,7 +14,7 @@ import {
   useInitialFocus,
   useRemoteKeyHandler,
 } from '@/shared/remote-navigation';
-import { ActionButton, PageLayout, QuantityControl } from '@/shared/ui';
+import { ActionButton, NotFoundView, PageLayout, QuantityControl } from '@/shared/ui';
 import { formatPrice } from './rows';
 import { serviceFocusId, serviceTab } from './state';
 
@@ -104,6 +104,6 @@ type MenuItemPageProps = {
 
 export function MenuItemPage({ itemId }: MenuItemPageProps) {
   const item = MENU_ITEMS.find((entry) => entry.id === itemId);
-  if (!item) return <PageLayout title={t('roomService.title')}>{null}</PageLayout>;
+  if (!item) return <NotFoundView />;
   return <MenuItemView item={item} />;
 }

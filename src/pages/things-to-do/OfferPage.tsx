@@ -3,7 +3,7 @@ import { OFFERS } from '@/entities/offer';
 import type { Offer } from '@/entities/offer';
 import { HOTEL } from '@/shared/config';
 import { language, pickText, t } from '@/shared/i18n';
-import { PageLayout, QrCode } from '@/shared/ui';
+import { NotFoundView, QrCode } from '@/shared/ui';
 
 const FREE_PRICE = /free|complimentary/i;
 
@@ -93,6 +93,6 @@ type OfferPageProps = {
 
 export function OfferPage({ offerId }: OfferPageProps) {
   const offer = OFFERS.find((entry) => entry.id === offerId);
-  if (!offer) return <PageLayout title={t('thingsToDoPage.title')}>{null}</PageLayout>;
+  if (!offer) return <NotFoundView />;
   return <OfferView offer={offer} />;
 }

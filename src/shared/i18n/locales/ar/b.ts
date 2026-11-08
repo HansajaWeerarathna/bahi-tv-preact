@@ -181,8 +181,8 @@ export const arB = {
     loading: 'نجهّز غرفتك',
     reset: 'نجهّز الغرفة للضيف التالي',
   },
-  placeholder: {
-    comingNext: 'هذه الصفحة قادمة قريباً.',
+  notFound: {
+    message: 'لم نجد ذلك. ربما تم نقله.',
     backHome: 'العودة إلى الرئيسية',
   },
 } satisfies Partial<Dictionary>;

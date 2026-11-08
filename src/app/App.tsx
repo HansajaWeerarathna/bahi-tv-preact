@@ -4,9 +4,8 @@ import { startClock } from '@/entities/clock';
 import { systemState } from '@/entities/session';
 import { ROUTES } from '@/shared/config';
 import { RemoteControl } from '@/shared/remote-navigation';
-import { Toast } from '@/shared/ui';
+import { NotFoundView, Toast } from '@/shared/ui';
 import { HomePage } from '@/pages/home';
-import { PlaceholderPage } from '@/pages/placeholder';
 import { startAlarmRing } from '@/features/alarms';
 import { DemoKeys, isDemoMode } from '@/features/demo-tools';
 import { VolumeKeys } from '@/features/volume';
@@ -80,7 +79,7 @@ export function App() {
             <Route path={ROUTES.settings} component={SettingsPage} />
             <Route path={ROUTES.remoteHelp} component={RemoteHelpPage} />
             <Route path={ROUTES.search} component={SearchPage} />
-            <Route default component={PlaceholderPage} />
+            <Route default component={NotFoundView} />
           </Router>
         ) : (
           <SystemScreen state={system} />

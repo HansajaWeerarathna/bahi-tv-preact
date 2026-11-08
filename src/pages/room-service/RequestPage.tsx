@@ -18,7 +18,7 @@ import {
   useInitialFocus,
   useRemoteKeyHandler,
 } from '@/shared/remote-navigation';
-import { ActionButton, PageLayout, QuantityControl } from '@/shared/ui';
+import { ActionButton, NotFoundView, PageLayout, QuantityControl } from '@/shared/ui';
 import { buildRequestMessage } from './messages';
 
 const QTY_ID = 'request-qty';
@@ -111,6 +111,6 @@ type RequestPageProps = {
 
 export function RequestPage({ requestId }: RequestPageProps) {
   const request = GUEST_REQUESTS.find((entry) => entry.id === requestId);
-  if (!request) return <PageLayout title={t('roomService.title')}>{null}</PageLayout>;
+  if (!request) return <NotFoundView />;
   return <RequestView request={request} />;
 }

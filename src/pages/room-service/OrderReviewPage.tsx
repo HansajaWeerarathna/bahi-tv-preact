@@ -24,7 +24,7 @@ import {
 import { ActionButton, PageLayout } from '@/shared/ui';
 import { buildOrderMessage } from './messages';
 import { formatPrice } from './rows';
-import { serviceTab } from './state';
+import { serviceFocusId, serviceTab } from './state';
 
 const DELIVERY_LABELS = [
   'roomService.deliveryNow',
@@ -63,6 +63,7 @@ export function OrderReviewPage() {
     onSelect: () => {
       clearOrder();
       serviceTab.value = 0;
+      serviceFocusId.value = 'rs-row-0';
       route(ROUTES.roomService);
     },
   });

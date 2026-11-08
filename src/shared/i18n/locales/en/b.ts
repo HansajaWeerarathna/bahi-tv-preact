@@ -180,8 +180,8 @@ export const enB = {
     loading: 'Getting your room ready',
     reset: 'Preparing for the next guest',
   },
-  placeholder: {
-    comingNext: 'This page is coming next.',
+  notFound: {
+    message: 'We could not find that. It may have moved.',
     backHome: 'Back to home',
   },
 };

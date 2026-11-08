@@ -1,5 +1,6 @@
 export * from './icons';
 export { RemoteHints } from './RemoteHints';
+export { NotFoundView } from './NotFoundView';
 export { PageLayout } from './PageLayout';
 export { ActionButton } from './ActionButton';
 export { FeedbackBanner } from './FeedbackBanner';
