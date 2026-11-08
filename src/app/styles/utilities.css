@@ -6,7 +6,7 @@
 
 @utility tv-focus {
   outline: none;
-  transition-property: transform, background-color, box-shadow, border-color;
+  transition-property: transform, background-color, border-color;
   transition-duration: 150ms;
   transition-timing-function: var(--ease-tv);
 
