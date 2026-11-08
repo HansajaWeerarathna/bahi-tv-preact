@@ -18,7 +18,7 @@ An in-room TV app for Bahi Ajman Palace Hotel. A guest uses the TV remote to cal
 | Random remote key presses         | 2600 presses, 0 errors                             |
 | Unit tests                        | 75 passing                                         |
 | Languages                         | English, and Arabic with the whole layout mirrored |
-| Routes                            | 24, each loaded the first time it's opened         |
+| Routes                            | 24, with only Home loaded at start-up              |
 | TypeScript                        | Strict, with no `any` and no `@ts-ignore`          |
 
 ## Try it
