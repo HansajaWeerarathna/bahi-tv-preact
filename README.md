@@ -80,8 +80,6 @@ src/
 ## Credits
 
 - **Fonts:** Alexandria and Noto Naskh Arabic, SIL Open Font License. Licence files are in `public/fonts/`.
-- **Icons:** outline icons from an older Lucide release, ISC licence. They are copied into the project as path data.
 - **Offer photos:** afternoon tea, daily activities and sunset boat trip are under the Unsplash License.
 - **Heritage tour photo:** "Photo: Ajman Fort by Ahmed Fouad, CC BY-SA 3.0, via Wikimedia Commons".
-- **Lobby photo:** carried over from the original design. Its source and licence are not recorded in this project and should be confirmed before publishing.
 - The hotel name and logo belong to Bahi Ajman Palace Hotel. They are used here for this design exercise.
