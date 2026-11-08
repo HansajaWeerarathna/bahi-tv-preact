@@ -153,6 +153,29 @@ npm test
 npm run build
 ```
 
+## Architecture
+
+The code is organised by responsibility, following Feature-Sliced Design: app, pages, widgets, features, entities and shared, each with its own job.
+
+```
+src/
+  app/        startup, routes, global styles
+  pages/      one folder per screen
+  widgets/    large page regions (header, tiles, background)
+  features/   user actions (alarms, order food, demo tools, volume)
+  entities/   data and signals (guest, offers, weather, alarms)
+  shared/     UI parts, remote navigation, i18n, time helpers
+```
+
+Run it locally. The project's CI runs Node 22 (`.github/workflows/deploy.yml`), and Vite 8 requires Node 20.19 or 22.12 or newer. The measurements in [docs/measurements.md](docs/measurements.md) were taken on Node v24.21.0. Install from the committed lockfile:
+
+```bash
+npm ci
+npm run dev
+```
+
+To change the brand colour, edit `--color-gold` in `src/app/styles/theme.css`. To switch a tile off, set `enabled: false` in `src/widgets/service-tiles/tiles.ts`.
+
 ## Controls
 
 | Keyboard            | TV remote | Action                        |
@@ -172,33 +195,10 @@ The demo link adds keys for showing each state: **P** promotional offers, **N** 
 
 </details>
 
-## Architecture
-
-The code is organised by responsibility, following Feature-Sliced Design: app, pages, widgets, features, entities and shared, each with its own job.
-
-```
-src/
-  app/        startup, routes, global styles
-  pages/      one folder per screen
-  widgets/    large page regions (header, tiles, background)
-  features/   user actions (alarms, order food, demo tools, volume)
-  entities/   data and signals (guest, offers, weather, alarms)
-  shared/     UI parts, remote navigation, i18n, time helpers
-```
-
-Run it locally with Node 22.12 or newer, or 20.19 or newer, which Vite requires. CI uses Node 22. Install from the committed lockfile:
-
-```bash
-npm ci
-npm run dev
-```
-
-To change the brand colour, edit `--color-gold` in `src/app/styles/theme.css`. To switch a tile off, set `enabled: false` in `src/widgets/service-tiles/tiles.ts`.
-
 ## Limitations
 
 - It has run in desktop Chrome only. Tizen and webOS send their own codes for some remote buttons, and those aren't mapped yet.
-- The build uses `color-mix()`, which needs Chromium 111 or newer, and `@property`, which needs recent Safari and Firefox releases. Only desktop Chrome has been tested.
+- Tailwind CSS v4's compatibility page lists Chrome 111, Safari 16.4 and Firefox 128 as the minimum browsers its core features depend on. The build also uses `color-mix()` and `@property`. Only desktop Chrome has been tested.
 - It needs a server that returns `index.html` for any path. A packaged TV app running from `file://` would need hash or in-memory routing.
 - All hotel data and actions are simulated.
 
