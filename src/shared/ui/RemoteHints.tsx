@@ -32,7 +32,7 @@ export function RemoteHints({ class: className, endText, variant = 'home' }: Rem
           'flex items-center text-caption',
           isPage
             ? 'ms-1 gap-10 leading-[normal] text-cream-muted'
-            : 'gap-9 font-medium text-cream-subtle',
+            : 'gap-9 leading-[normal] font-medium text-cream-subtle',
         )}
       >
         {isPage ? (
