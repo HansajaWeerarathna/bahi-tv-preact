@@ -8,8 +8,12 @@ type UseFocusableOptions = {
   onSelect?: () => void;
 };
 
-export function useFocusable({ id, group, onSelect }: UseFocusableOptions) {
-  const ref = useRef<HTMLButtonElement>(null);
+export function useFocusable<T extends HTMLElement = HTMLButtonElement>({
+  id,
+  group,
+  onSelect,
+}: UseFocusableOptions) {
+  const ref = useRef<T>(null);
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
 

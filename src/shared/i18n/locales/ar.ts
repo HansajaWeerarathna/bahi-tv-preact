@@ -52,6 +52,10 @@ export const ar: Dictionary = {
     alarm: 'المنبه',
     stay: 'إقامتك',
     roomControls: 'التحكم بالغرفة',
+    unreadCount: 'لديك {count} رسائل غير مقروءة',
+  },
+  offer: {
+    seeDetails: 'عرض التفاصيل',
   },
   hints: {
     navigate: 'تنقل',

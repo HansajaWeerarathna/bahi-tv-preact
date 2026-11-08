@@ -50,6 +50,10 @@ export const en = {
     alarm: 'Alarm',
     stay: 'Your stay',
     roomControls: 'Room controls',
+    unreadCount: '{count} unread messages',
+  },
+  offer: {
+    seeDetails: 'See details',
   },
   hints: {
     navigate: 'Navigate',
