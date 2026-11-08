@@ -54,7 +54,7 @@ function SpotlightContent() {
         {...focusProps}
         class="group ms-auto flex w-[852px] flex-col justify-end gap-1.5 text-start outline-none"
       >
-        <span key={offer.id} class="flex offer-fade-in flex-col gap-1.5">
+        <span key={offer.id} class="flex offer-copy-in flex-col gap-1.5">
           <span class="block font-serif text-heading leading-[1.08]">{pickText(offer.title)}</span>
           <span class="mb-3 block max-w-[1000px] text-caption leading-[1.3]">
             {pickText(offer.tagline)}
