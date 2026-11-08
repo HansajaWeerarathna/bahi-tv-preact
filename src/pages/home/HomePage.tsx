@@ -1,49 +1,27 @@
-import { useLocation } from 'preact-iso';
-import { ROUTES } from '@/shared/config';
-import type { TranslationKey } from '@/shared/i18n';
+import { HomeBackground } from '@/widgets/home-background';
+import { HomeHeader } from '@/widgets/home-header';
+import { GreetingBand } from '@/widgets/greeting-band';
+import { NoticeStrip } from '@/widgets/notice-strip';
+import { OfferSpotlight } from '@/widgets/offer-spotlight';
+import { lastHomeFocus, ServiceTiles } from '@/widgets/service-tiles';
 import { t } from '@/shared/i18n';
-import { useFocusable, useInitialFocus } from '@/shared/remote-navigation';
-
-type TestTileProps = {
-  id: string;
-  labelKey: TranslationKey;
-  target: string;
-};
-
-function TestTile({ id, labelKey, target }: TestTileProps) {
-  const { route } = useLocation();
-  const { focusProps } = useFocusable({
-    id,
-    group: 'home-tiles',
-    onSelect: () => route(target),
-  });
-
-  return (
-    <button
-      type="button"
-      {...focusProps}
-      class="tv-focus h-[188px] w-[414px] tile-surface px-7 py-6 text-start text-body font-semibold"
-    >
-      {t(labelKey)}
-    </button>
-  );
-}
-
-const TEST_TILES: readonly TestTileProps[] = [
-  { id: 'frontDesk', labelKey: 'tiles.frontDesk', target: ROUTES.frontDesk },
-  { id: 'tv', labelKey: 'tiles.tv', target: ROUTES.tv },
-  { id: 'roomService', labelKey: 'tiles.roomService', target: ROUTES.roomService },
-  { id: 'thingsToDo', labelKey: 'tiles.thingsToDo', target: ROUTES.thingsToDo },
-];
+import { useInitialFocus } from '@/shared/remote-navigation';
+import { RemoteHints } from '@/shared/ui';
 
 export function HomePage() {
-  useInitialFocus('frontDesk');
+  useInitialFocus(lastHomeFocus.value, 'tile-frontDesk');
 
   return (
-    <div class="absolute inset-x-24 top-1/2 flex -translate-y-1/2 gap-6">
-      {TEST_TILES.map((tile) => (
-        <TestTile key={tile.id} {...tile} />
-      ))}
-    </div>
+    <>
+      <HomeBackground />
+      <main class="relative flex h-full flex-col px-24 py-[54px]">
+        <HomeHeader />
+        <GreetingBand />
+        <NoticeStrip />
+        <OfferSpotlight />
+        <ServiceTiles />
+        <RemoteHints class="mt-8 pt-1" endText={t('hotel.footerName')} />
+      </main>
+    </>
   );
 }
