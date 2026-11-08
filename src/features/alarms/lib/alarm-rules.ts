@@ -22,7 +22,7 @@ export type NowParts = {
   dateKey: string;
 };
 
-export const NO_DAYS: boolean[] = [false, false, false, false, false, false, false];
+const NO_DAYS: boolean[] = [false, false, false, false, false, false, false];
 
 export function newDraft(): AlarmDraft {
   return { id: null, hour: 7, minute: 0, days: [...NO_DAYS] };

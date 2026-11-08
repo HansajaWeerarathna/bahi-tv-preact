@@ -2,7 +2,7 @@ import { signal } from '@preact/signals';
 import type { FocusCandidate, FocusDirection } from '../types';
 import { findNextFocus } from '../lib/find-next-focus';
 
-export type FocusEntry = {
+type FocusEntry = {
   group: string;
   getElement: () => HTMLElement | null;
   onSelect?: () => void;

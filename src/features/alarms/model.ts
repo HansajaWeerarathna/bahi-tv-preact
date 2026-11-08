@@ -72,7 +72,7 @@ export function clearAlarms(): void {
 }
 
 // Shows the message for each alarm that is due. A one-time alarm switches itself off after it rings.
-export function ringDueAlarms(now: TimeParts, weekday: number): void {
+function ringDueAlarms(now: TimeParts, weekday: number): void {
   const parts: NowParts = {
     hour: now.hour,
     minute: now.minute,

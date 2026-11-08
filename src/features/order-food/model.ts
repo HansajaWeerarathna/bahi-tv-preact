@@ -16,7 +16,7 @@ const MAX_QTY = 9;
 const PREP_BUFFER_MIN = 10;
 const DELIVERY_EXTRA_MIN = [0, 30, 60] as const;
 
-export const DELIVERY_COUNT = DELIVERY_EXTRA_MIN.length;
+const DELIVERY_COUNT = DELIVERY_EXTRA_MIN.length;
 export const orderLines = signal<readonly OrderLine[]>([]);
 export const deliveryIndex = signal(0);
 export const lastOrder = signal<PlacedOrder | null>(null);

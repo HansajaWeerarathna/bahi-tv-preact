@@ -1,7 +1,7 @@
 import type { Weather, WeatherCondition } from '@/entities/weather';
 import type { TimeParts } from '@/shared/lib/time';
 
-export type ForecastDay = {
+type ForecastDay = {
   label: string;
   date: string;
   condition: WeatherCondition;
