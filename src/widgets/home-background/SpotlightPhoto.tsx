@@ -8,10 +8,8 @@ type SpotlightPhotoProps = {
   animated?: boolean;
 };
 
-type LoadState = 'loading' | 'loaded' | 'failed';
-
 export function SpotlightPhoto({ src, animated = false }: SpotlightPhotoProps) {
-  const [loadState, setLoadState] = useState<LoadState>('loading');
+  const [loaded, setLoaded] = useState(false);
 
   return (
     <div class="absolute inset-0">
@@ -21,11 +19,10 @@ export function SpotlightPhoto({ src, animated = false }: SpotlightPhotoProps) {
         width={1600}
         height={1067}
         decoding="async"
-        onLoad={() => setLoadState('loaded')}
-        onError={() => setLoadState('failed')}
+        onLoad={() => setLoaded(true)}
         class={clsx(
           'absolute inset-0 size-full object-cover transition-opacity duration-[600ms]',
-          loadState === 'loaded' ? 'opacity-100' : 'opacity-0',
+          loaded ? 'opacity-100' : 'opacity-0',
           animated && MOTION_CLASS,
         )}
       />

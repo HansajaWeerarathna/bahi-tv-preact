@@ -1,8 +1,7 @@
 import type { ComponentType } from 'preact';
 import { useLocation } from 'preact-iso';
 import { ROUTES } from '@/shared/config';
-import type { TranslationKey } from '@/shared/i18n';
-import { t } from '@/shared/i18n';
+import { t, type TranslationKey } from '@/shared/i18n';
 import { useFocusable } from '@/shared/remote-navigation';
 import { PhoneIcon, SearchIcon, SettingsIcon, type IconProps } from '@/shared/ui';
 
@@ -18,6 +17,7 @@ function HeaderButton({ id, Icon, labelKey, path }: HeaderButtonProps) {
   const { focusProps } = useFocusable({
     id,
     group: 'header-actions',
+    returnToLast: true,
     onSelect: () => route(path),
   });
 

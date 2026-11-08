@@ -6,12 +6,15 @@ type UseFocusableOptions = {
   id: string;
   group: string;
   onSelect?: () => void;
+  // Down or up from here goes back to the last content item (header and notice).
+  returnToLast?: boolean;
 };
 
 export function useFocusable<T extends HTMLElement = HTMLButtonElement>({
   id,
   group,
   onSelect,
+  returnToLast = false,
 }: UseFocusableOptions) {
   const ref = useRef<T>(null);
   const onSelectRef = useRef(onSelect);
@@ -21,10 +24,11 @@ export function useFocusable<T extends HTMLElement = HTMLButtonElement>({
     () =>
       registerFocusable(id, {
         group,
+        returnToLast,
         getElement: () => ref.current,
         onSelect: () => onSelectRef.current?.(),
       }),
-    [id, group],
+    [id, group, returnToLast],
   );
 
   const isFocused = useComputed(() => focusedId.value === id);

@@ -10,7 +10,7 @@ import { language } from '@/shared/i18n';
 import type { TimeParts } from '@/shared/lib/time';
 import { showToast } from '@/shared/ui';
 
-export const checkOutDayOn = signal(false);
+const checkOutDayOn = signal(false);
 export const legendOpen = signal(false);
 export const reviewStatesOpen = signal(false);
 

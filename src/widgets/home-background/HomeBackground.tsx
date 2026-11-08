@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { offerLayout, offers, spotlightIndex } from '@/entities/offer';
 import { backgroundMotion, highContrast } from '@/entities/preferences';
+import { assetUrl } from '@/shared/config/base';
 import { SpotlightPhoto } from './SpotlightPhoto';
 import { MOTION_CLASS } from './motion';
 
@@ -13,7 +14,7 @@ export function HomeBackground() {
   return (
     <div class="absolute inset-0" aria-hidden="true">
       <img
-        src="/images/lobby.jpg"
+        src={assetUrl('images/lobby.jpg')}
         alt=""
         width={1920}
         height={1080}

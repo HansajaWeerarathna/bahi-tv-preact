@@ -8,7 +8,7 @@ import { DEFAULT_WEATHER, weather } from '@/entities/weather';
 import { language } from '@/shared/i18n';
 import { resetDemoState, timeOn } from './demo-actions';
 
-export type ReviewState = {
+type ReviewState = {
   number: number;
   label: string;
   apply: () => void;

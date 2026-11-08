@@ -1,47 +1,85 @@
 # Bahi TV
 
-In-room TV home screen for Bahi Ajman Palace Hotel, built with Preact, TypeScript and Tailwind CSS v4. It runs on a fixed 1920×1080 canvas that scales to any window, and it works with a TV remote (arrow keys, OK, Back, Home) or a keyboard.
+The in-room TV home screen for Bahi Ajman Palace Hotel. A guest uses a TV remote to reach the front desk, room service, the TV, offers, Wi-Fi, messages, alarms and room controls. Everything is in English and Arabic, and Arabic mirrors the whole layout.
 
-## Run
+The screen is a fixed 1920×1080 canvas, scaled to fit any window.
+
+![Home screen in English](docs/screenshots/home-en.png)
+
+![Home screen in Arabic](docs/screenshots/home-ar.png)
+
+## Run it
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:5173. Other scripts: `npm run build`, `npm run preview`, `npm test`, `npm run lint`, `npm run format`, `npm run typecheck`.
+Other scripts:
 
-The build targets Chrome 111 and Safari 16.4 and later. Older built-in TV browsers (for example Chromium 79–108 on some older TV models) are not supported.
+```bash
+npm test          # unit tests
+npm run lint
+npm run typecheck
+npm run build     # production build in dist/
+npm run preview   # serve dist/ locally
+```
 
 ## Remote keys
 
-| Keyboard          | Remote | Action                                           |
-| ----------------- | ------ | ------------------------------------------------ |
-| Arrow keys        | D-pad  | Move focus to the nearest item in that direction |
-| Enter             | OK     | Select the focused item                          |
-| Escape, Backspace | Back   | Go back one page                                 |
-| H, Home           | Home   | Go to the home page                              |
-| M                 | Menu   | Open Settings                                    |
+| Key                 | Action                        |
+| ------------------- | ----------------------------- |
+| Arrow keys          | Move focus                    |
+| Enter               | OK: select                    |
+| Escape or Backspace | Back                          |
+| H or Home           | Home screen                   |
+| M                   | Settings                      |
+| + or =              | Volume up by 5                |
+| - or _              | Volume down by 5              |
+| 0 to 9              | Tune a channel on the TV page |
 
-Focus moves by on-screen position, so Arabic (right to left) needs no key swapping.
+Add `?demo` to the address to show the demo keys:
 
-## Demo keys
+| Key | Action                                            |
+| --- | ------------------------------------------------- |
+| N   | New message on or off                             |
+| C   | Check-out day on or off                           |
+| P   | Offer layout                                      |
+| S   | Review states (eleven states, Up, Down and Enter) |
+| D   | Key legend                                        |
 
-These work in the dev server, or on any build with `?demo` in the address.
+## Scope
 
-| Key | Action                                                            |
-| --- | ----------------------------------------------------------------- |
-| N   | Toggle a new message (or mark all read)                           |
-| C   | Toggle check-out day                                              |
-| P   | Switch the offer layout between the count and the photo spotlight |
-| S   | Open or close the review states (Up/Down, Enter to apply)         |
-| D   | Show or hide the key legend                                       |
+The assignment asked for the home page and its navigation. The other pages (room service, offers, Wi-Fi, stay, weather, room controls, alarms, settings, search and the system screens) were built afterwards, phase by phase.
 
-## Structure
+## How it is built
 
-The code follows Feature-Sliced Design: `app` (bootstrap and styles), `pages`, `widgets` (home header, greeting, tiles and so on), `features` (demo tools), `entities` (guest, messages, offers, weather, clock), and `shared` (UI kit, i18n, time, remote navigation, config).
+Preact with Preact Signals, preact-iso for routing, Tailwind CSS v4 and Vite. TypeScript is strict.
 
-## Photo credits
+The code follows Feature-Sliced Design. Each layer may import only from the layers below it:
 
-- Afternoon tea, daily activities and sunset boat trip: Unsplash License.
-- Heritage site tour: "Photo: Ajman Fort by Ahmed Fouad, CC BY-SA 3.0, via Wikimedia Commons".
+```
+src/
+  app/        startup, routes, global styles
+  pages/      one folder per screen
+  widgets/    large page regions (header, tiles, background)
+  features/   user actions (alarms, order food, demo tools, volume)
+  entities/   data and signals (guest, offers, weather, alarms)
+  shared/     UI parts, remote navigation, i18n, time helpers
+```
+
+## Decisions
+
+- **Focus moves by position on screen**, not by a fixed list of neighbours. Arabic mirrors the layout, so the remote needs no key swap, and a new page needs no navigation code.
+- **One fixed canvas, scaled with a single transform**, so the layout is the same on every TV size.
+- **Colours and sizes are design tokens** in Tailwind's `@theme`. High contrast and larger text change those tokens; they don't add separate styles.
+- **Hotel time** (Asia/Dubai) drives the clock and the greeting, not the TV's own clock.
+- **Only the home screen loads at start-up.** Other pages load the first time they are opened.
+- **Alarms and guest details are kept in memory only.** Nothing is saved to the browser, as in the original.
+
+## Credits
+
+- **Fonts:** Alexandria and Noto Naskh Arabic, SIL Open Font License. Licence files are in `public/fonts/`.
+- **Offer photos:** afternoon tea, daily activities and sunset boat trip are under the Unsplash License.
+- **Heritage tour photo:** "Photo: Ajman Fort by Ahmed Fouad, CC BY-SA 3.0, via Wikimedia Commons".
+- The hotel name and logo belong to Bahi Ajman Palace Hotel. They are used here for this design exercise.

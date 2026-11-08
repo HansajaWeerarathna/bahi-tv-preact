@@ -3,13 +3,13 @@ import { HomeHeader } from '@/widgets/home-header';
 import { GreetingBand } from '@/widgets/greeting-band';
 import { NoticeStrip } from '@/widgets/notice-strip';
 import { OfferSpotlight } from '@/widgets/offer-spotlight';
-import { lastHomeFocus, ServiceTiles } from '@/widgets/service-tiles';
+import { ServiceTiles } from '@/widgets/service-tiles';
 import { t } from '@/shared/i18n';
-import { useInitialFocus } from '@/shared/remote-navigation';
+import { lastSelectedId, useInitialFocus } from '@/shared/remote-navigation';
 import { RemoteHints } from '@/shared/ui';
 
 export function HomePage() {
-  useInitialFocus(lastHomeFocus.value, 'tile-frontDesk');
+  useInitialFocus(lastSelectedId.value, 'tile-frontDesk');
 
   return (
     <>
